@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Natural, earthy, light & airy palette */
+  --color-cream: #fbf7f0;
+  --color-cream-soft: #f6efe3;
+  --color-sand: #ead9bf;
+  --color-sand-dark: #d9c19c;
+  --color-terracotta: #c1704a;
+  --color-terracotta-dark: #a3583a;
+  --color-terracotta-light: #e3b79a;
+  --color-sage: #8a9878;
+  --color-sage-dark: #6c7a5b;
+  --color-sage-light: #c3ceb4;
+  --color-clay-900: #453a2f;
+  --color-clay-700: #6b5c4c;
+  --color-clay-500: #8c7c6a;
+  --color-white: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--color-cream);
+  --color-cream-soft: var(--color-cream-soft);
+  --color-sand: var(--color-sand);
+  --color-sand-dark: var(--color-sand-dark);
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-dark: var(--color-terracotta-dark);
+  --color-terracotta-light: var(--color-terracotta-light);
+  --color-sage: var(--color-sage);
+  --color-sage-dark: var(--color-sage-dark);
+  --color-sage-light: var(--color-sage-light);
+  --color-clay-900: var(--color-clay-900);
+  --color-clay-700: var(--color-clay-700);
+  --color-clay-500: var(--color-clay-500);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-clay-900);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-terracotta-light);
+  color: var(--color-clay-900);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* subtle grain texture overlay for warmth */
+.bg-grain {
+  position: relative;
+}
+
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

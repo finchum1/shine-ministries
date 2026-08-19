@@ -1,69 +1,124 @@
-import Image from "next/image";
+import { HomeHero } from "@/components/home/HomeHero";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ButtonLink } from "@/components/ui/Button";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { EventCard } from "@/components/EventCard";
+import { NewsletterForm } from "@/components/forms/NewsletterForm";
+import { site, values } from "@/lib/site";
+import { getUpcomingEvents } from "@/lib/events";
+import { SunMark } from "@/components/ui/SunMark";
 
-export default function Home() {
+const icons: Record<string, string> = {
+  hands: "🤝",
+  leaf: "🌿",
+  sun: "☀️",
+};
+
+export default async function Home() {
+  const { events } = await getUpcomingEvents(3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <HomeHero />
+
+      {/* Verse callout */}
+      <section className="bg-cream py-20 sm:py-24">
+        <Reveal className="mx-auto max-w-3xl px-6 text-center">
+          <SunMark className="mx-auto mb-6 h-10 w-10 text-sand-dark" />
+          <p className="font-display text-2xl leading-relaxed text-clay-900 sm:text-3xl">
+            {site.verse.text}
           </p>
+          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
+            {site.verse.reference}
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Values */}
+      <section className="bg-cream-soft py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <SectionHeading
+            eyebrow="What We're About"
+            title="Community, growth, and service"
+            description="Everything we do flows from these three commitments — to each other, to God's Word, and to the world around us."
+          />
+          <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-3">
+            {values.map((value) => (
+              <RevealItem key={value.title}>
+                <div className="h-full rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-clay-900/5">
+                  <span className="text-3xl">{icons[value.icon]}</span>
+                  <h3 className="mt-4 font-display text-xl text-clay-900">{value.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-clay-700">{value.description}</p>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Upcoming events */}
+      <section className="bg-cream py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <SectionHeading
+            eyebrow="Mark Your Calendar"
+            title="Upcoming events"
+            description="A few of the gatherings coming up soon — we'd love to see you there."
+          />
+          <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </RevealGroup>
+          <Reveal className="mt-12 text-center">
+            <ButtonLink href="/events" variant="secondary">
+              View All Events
+            </ButtonLink>
+          </Reveal>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Bible studies teaser */}
+      <section className="bg-sage/10 py-20 sm:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2">
+          <Reveal>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
+              Dig Deeper
+            </p>
+            <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
+              Grow in God&rsquo;s Word alongside women who get it
+            </h2>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-clay-700">
+              Whether you&rsquo;re new to Scripture or have studied it for years, there&rsquo;s a
+              group for you. Our studies meet weekly in person and online, with childcare
+              available for in-person groups.
+            </p>
+            <div className="mt-8">
+              <ButtonLink href="/bible-studies">Find a Study</ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1} className="relative">
+            <div className="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-sand via-sand-dark to-terracotta-light/60 shadow-inner" />
+            <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white px-6 py-4 shadow-lg ring-1 ring-clay-900/5">
+              <p className="font-display text-2xl text-terracotta-dark">3</p>
+              <p className="text-xs uppercase tracking-wide text-clay-500">weekly studies</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Newsletter / get involved band */}
+      <section className="bg-clay-900 py-20 sm:py-24">
+        <Reveal className="mx-auto max-w-2xl px-6 text-center">
+          <h2 className="font-display text-3xl text-cream sm:text-4xl">Stay in the light</h2>
+          <p className="mt-4 text-base leading-relaxed text-cream/70">
+            Get occasional updates on events, Bible studies, and ways to get involved — straight
+            to your inbox.
+          </p>
+          <div className="mt-8">
+            <NewsletterForm dark />
+          </div>
+        </Reveal>
+      </section>
+    </>
   );
 }
