@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -70,13 +71,14 @@ export default function AboutPage() {
       <section className="bg-cream py-20 sm:py-24">
         <div className="mx-auto grid max-w-5xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <div className="mx-auto flex aspect-[4/3] w-full max-w-sm items-center justify-center rounded-3xl bg-gradient-to-br from-terracotta-light to-sand shadow-inner lg:max-w-none">
-              <span className="font-display text-6xl text-clay-900/70">
-                {founder.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </span>
+            <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl shadow-inner lg:max-w-none">
+              <Image
+                src={founder.photo}
+                alt={founder.name}
+                fill
+                sizes="(min-width: 1024px) 40vw, 384px"
+                className="object-cover"
+              />
             </div>
           </Reveal>
           <Reveal delay={0.1}>
