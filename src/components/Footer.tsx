@@ -45,8 +45,7 @@ export function Footer() {
                   {site.email}
                 </a>
               </li>
-              <li>{site.phone}</li>
-              <li>{site.address}</li>
+              <li>Serving the OKC metro area</li>
             </ul>
           </div>
 

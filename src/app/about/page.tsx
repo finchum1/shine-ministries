@@ -29,10 +29,11 @@ export default function AboutPage() {
             </h2>
             <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
               <p>
-                Shine Ministries started small — a few women gathering to pray, study Scripture,
-                and encourage one another through the everyday realities of life. What began as a
-                simple weekly meeting has grown into a community of women from all walks of life,
-                united by a shared desire to know God more deeply and love others well.
+                Shine Ministries started small — a few women in the Oklahoma City area gathering to
+                pray, study Scripture, and encourage one another through the everyday realities of
+                life. What began as a simple weekly meeting has grown into a community of women
+                from all walks of life, united by a shared desire to know God more deeply and love
+                others well.
               </p>
               <p>
                 Today, we exist to help women take their next step in faith — through Bible study,
@@ -98,8 +99,18 @@ export default function AboutPage() {
           <h2 className="font-display text-3xl text-clay-900 sm:text-4xl">New here?</h2>
           <p className="mt-4 text-base leading-relaxed text-clay-700">
             We&rsquo;d love to meet you. Come as you are — no experience with Bible study or church
-            required, just an open heart.
+            required, just an open heart. {site.ageNote}.
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {site.serviceArea.map((city) => (
+              <span
+                key={city}
+                className="rounded-full bg-white px-4 py-1.5 text-xs font-medium text-clay-700 ring-1 ring-clay-900/8"
+              >
+                {city}, OK
+              </span>
+            ))}
+          </div>
         </Reveal>
       </section>
     </>

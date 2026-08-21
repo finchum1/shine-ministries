@@ -8,14 +8,16 @@ export const site = {
     text: "“In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.”",
     reference: "Matthew 5:16",
   },
+  // Mirrors the real mission line from the Shine Ministries OK Facebook page.
   description:
-    "A women's ministry dedicated to community, spiritual growth, and service — helping women know God's Word, walk in genuine friendship, and shine His light in everyday life.",
-  email: "hello@shineministries.org",
-  phone: "(555) 123-4567",
-  address: "123 Fellowship Lane, Your City, OK",
+    "Helping women in Oklahoma City and the surrounding areas build genuine Christian community and connection. All women are welcome, ages 17 and up.",
+  ageNote: "All women welcome, ages 17+",
+  email: "shineministriesoklahoma@gmail.com",
+  // Real service area, from the Shine Ministries OK Facebook page.
+  serviceArea: ["Oklahoma City", "Edmond", "Norman", "Moore", "Yukon", "Piedmont", "Tuttle"],
   social: {
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
+    instagram: "https://instagram.com/shineministriesok",
+    facebook: "https://www.facebook.com/profile.php?id=61589769434289",
   },
   nav: [
     { href: "/", label: "Home" },
