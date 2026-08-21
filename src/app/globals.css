@@ -44,6 +44,10 @@
   --color-gold-dark: #d69f2e;
   --color-gold-bright: #ffe066;
 
+  /* Lavender — muted cool accent, used for the hero's first headline line */
+  --color-lavender: #a89bc4;
+  --color-lavender-dark: #8574a3;
+
   --color-clay-900: #453a2f;
   --color-clay-700: #6b5c4c;
   --color-clay-500: #8c7c6a;
@@ -75,6 +79,8 @@
   --color-gold: var(--color-gold);
   --color-gold-dark: var(--color-gold-dark);
   --color-gold-bright: var(--color-gold-bright);
+  --color-lavender: var(--color-lavender);
+  --color-lavender-dark: var(--color-lavender-dark);
   --color-clay-900: var(--color-clay-900);
   --color-clay-700: var(--color-clay-700);
   --color-clay-500: var(--color-clay-500);

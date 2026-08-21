@@ -108,11 +108,11 @@ export function HomeHero() {
           className="font-display text-5xl leading-[1.05] sm:text-6xl"
         >
           <motion.span
-            className="block text-gold-dark"
+            className="block text-lavender"
             animate={
               shouldReduceMotion
-                ? { textShadow: glowShadow(0.8) }
-                : brightenKeyframes("255, 201, 77", 0.85)
+                ? { textShadow: glowShadow(0.8, "168, 155, 196") }
+                : brightenKeyframes("168, 155, 196", 0.85)
             }
             transition={
               shouldReduceMotion
