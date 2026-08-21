@@ -43,7 +43,15 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-sage-light via-mist/50 to-blush/50 shadow-inner" />
+            <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl shadow-inner lg:max-w-none">
+              <Image
+                src="/brand/group-photo.jpg"
+                alt="Women of Shine Ministries together at a retreat"
+                fill
+                sizes="(min-width: 1024px) 40vw, 384px"
+                className="object-cover"
+              />
+            </div>
           </Reveal>
         </div>
       </section>
