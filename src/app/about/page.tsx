@@ -42,7 +42,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-sage-light via-sand to-terracotta-light/50 shadow-inner" />
+            <div className="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-sage-light via-mist/50 to-blush/50 shadow-inner" />
           </Reveal>
         </div>
       </section>
@@ -105,7 +105,7 @@ export default function AboutPage() {
             {site.serviceArea.map((city) => (
               <span
                 key={city}
-                className="rounded-full bg-white px-4 py-1.5 text-xs font-medium text-clay-700 ring-1 ring-clay-900/8"
+                className="rounded-full bg-linen/40 px-4 py-1.5 text-xs font-medium text-clay-700 ring-1 ring-linen-dark/25"
               >
                 {city}, OK
               </span>

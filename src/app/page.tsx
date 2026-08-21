@@ -97,7 +97,7 @@ export default async function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.1} className="relative">
-            <div className="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-sand via-sand-dark to-terracotta-light/60 shadow-inner" />
+            <div className="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-linen via-honey/50 to-terracotta-light/60 shadow-inner" />
             <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white px-6 py-4 shadow-lg ring-1 ring-clay-900/5">
               <p className="font-display text-2xl text-terracotta-dark">3</p>
               <p className="text-xs uppercase tracking-wide text-clay-500">weekly studies</p>

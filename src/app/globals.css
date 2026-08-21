@@ -1,17 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  /* Natural, earthy, light & airy palette */
+  /* Natural, earthy, light & airy palette — Sage / Mist / Honey / Terracotta /
+     Blush / Linen, per the brand moodboard. */
   --color-cream: #fbf7f0;
   --color-cream-soft: #f6efe3;
-  --color-sand: #ead9bf;
-  --color-sand-dark: #d9c19c;
-  --color-terracotta: #c1704a;
-  --color-terracotta-dark: #a3583a;
-  --color-terracotta-light: #e3b79a;
-  --color-sage: #8a9878;
-  --color-sage-dark: #6c7a5b;
-  --color-sage-light: #c3ceb4;
+
+  /* Linen — warm neutral wash, used for cards/section backgrounds */
+  --color-linen: #dbcdb4;
+  --color-linen-dark: #c7b594;
+
+  /* kept as an alias of linen so earlier "sand" usages inherit the real palette */
+  --color-sand: #dbcdb4;
+  --color-sand-dark: #c7b594;
+
+  /* Terracotta — primary accent (CTAs, links, active states) */
+  --color-terracotta: #c15f3b;
+  --color-terracotta-dark: #9c4a2c;
+  --color-terracotta-light: #e3b7a0;
+
+  /* Sage — secondary accent (values, calm sections) */
+  --color-sage: #93a17e;
+  --color-sage-dark: #6e7d5c;
+  --color-sage-light: #c7d0b9;
+
+  /* Honey — warm highlight accent (badges, small pops of gold) */
+  --color-honey: #dea956;
+  --color-honey-dark: #b9843a;
+  --color-honey-light: #f1d9ac;
+
+  /* Blush — soft rose accent (community/service-leaning sections) */
+  --color-blush: #d9aca3;
+  --color-blush-dark: #b27e73;
+  --color-blush-light: #edd6d0;
+
+  /* Mist — cool neutral accent, a quiet counterpoint to the warm hues */
+  --color-mist: #b7c3c4;
+  --color-mist-dark: #7c8b8c;
+  --color-mist-light: #dce3e3;
+
   --color-clay-900: #453a2f;
   --color-clay-700: #6b5c4c;
   --color-clay-500: #8c7c6a;
@@ -21,6 +48,8 @@
 @theme inline {
   --color-cream: var(--color-cream);
   --color-cream-soft: var(--color-cream-soft);
+  --color-linen: var(--color-linen);
+  --color-linen-dark: var(--color-linen-dark);
   --color-sand: var(--color-sand);
   --color-sand-dark: var(--color-sand-dark);
   --color-terracotta: var(--color-terracotta);
@@ -29,6 +58,15 @@
   --color-sage: var(--color-sage);
   --color-sage-dark: var(--color-sage-dark);
   --color-sage-light: var(--color-sage-light);
+  --color-honey: var(--color-honey);
+  --color-honey-dark: var(--color-honey-dark);
+  --color-honey-light: var(--color-honey-light);
+  --color-blush: var(--color-blush);
+  --color-blush-dark: var(--color-blush-dark);
+  --color-blush-light: var(--color-blush-light);
+  --color-mist: var(--color-mist);
+  --color-mist-dark: var(--color-mist-dark);
+  --color-mist-light: var(--color-mist-light);
   --color-clay-900: var(--color-clay-900);
   --color-clay-700: var(--color-clay-700);
   --color-clay-500: var(--color-clay-500);

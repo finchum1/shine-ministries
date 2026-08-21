@@ -32,6 +32,12 @@ export function HomeHero() {
       />
       <motion.div
         aria-hidden
+        className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-honey/25 blur-3xl"
+        animate={{ y: [0, 14, 0] }}
+        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden
         initial={{ opacity: 0, scale: 0.8, rotate: -12 }}
         animate={{ opacity: 0.5, scale: 1, rotate: 0 }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] as const }}

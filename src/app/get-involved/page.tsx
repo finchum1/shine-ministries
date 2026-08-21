@@ -30,7 +30,7 @@ export default function GetInvolvedPage() {
           <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {servingOpportunities.map((opportunity) => (
               <RevealItem key={opportunity.title}>
-                <div className="h-full rounded-2xl bg-cream-soft p-7 ring-1 ring-clay-900/5">
+                <div className="h-full rounded-2xl bg-blush-light/40 p-7 ring-1 ring-blush-dark/10">
                   <h3 className="font-display text-lg text-clay-900">{opportunity.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-clay-700">
                     {opportunity.description}
