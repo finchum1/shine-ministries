@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { site, values, leaders } from "@/lib/site";
+import { site, values, founder } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `About — ${site.name}`,
-  description: "Learn about Shine Ministries' story, mission, and leadership team.",
+  description: "Learn about Shine Ministries' story, mission, and founder.",
 };
 
 export default function AboutPage() {
@@ -68,29 +68,29 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-cream py-20 sm:py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="Meet the Team"
-            title="Leadership"
-            description="The women who help shepherd and organize this community."
-          />
-          <RevealGroup className="mt-14 grid gap-8 sm:grid-cols-3">
-            {leaders.map((leader) => (
-              <RevealItem key={leader.name}>
-                <div className="text-center">
-                  <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-terracotta-light to-sand text-2xl font-display text-clay-900 shadow-sm">
-                    {leader.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <h3 className="mt-5 font-display text-lg text-clay-900">{leader.name}</h3>
-                  <p className="text-sm font-medium text-terracotta-dark">{leader.role}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-clay-700">{leader.bio}</p>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+        <div className="mx-auto grid max-w-5xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
+          <Reveal>
+            <div className="mx-auto flex aspect-[4/3] w-full max-w-sm items-center justify-center rounded-3xl bg-gradient-to-br from-terracotta-light to-sand shadow-inner lg:max-w-none">
+              <span className="font-display text-6xl text-clay-900/70">
+                {founder.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </span>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
+              Meet the Founder
+            </p>
+            <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
+              {founder.name}
+            </h2>
+            <p className="mt-2 text-sm font-medium text-terracotta-dark">
+              {founder.role}, Shine Ministries
+            </p>
+            <p className="mt-5 text-base leading-relaxed text-clay-700">{founder.bio}</p>
+          </Reveal>
         </div>
       </section>
 

@@ -49,23 +49,13 @@ export const values = [
   },
 ];
 
-export const leaders = [
-  {
-    name: "Sarah Mitchell",
-    role: "Ministry Director",
-    bio: "Sarah has led women's ministry for over eight years with a heart for discipleship and hospitality.",
-  },
-  {
-    name: "Rachel Simmons",
-    role: "Bible Study Coordinator",
-    bio: "Rachel organizes our weekly studies and loves helping women encounter Scripture in fresh, meaningful ways.",
-  },
-  {
-    name: "Emily Carter",
-    role: "Outreach & Events Lead",
-    bio: "Emily plans our gatherings and outreach opportunities, always looking for new ways to serve well.",
-  },
-];
+// Real founder — bio is still being written; photo pending (public/brand/gina.jpg).
+export const founder = {
+  name: "Gina Helms-Ouren",
+  role: "Founder",
+  bio: "Gina's story is coming soon — check back for more about her heart behind Shine Ministries.",
+  photo: "/brand/gina.jpg",
+};
 
 export const servingOpportunities = [
   {
