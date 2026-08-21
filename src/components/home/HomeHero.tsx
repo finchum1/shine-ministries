@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ButtonLink } from "@/components/ui/Button";
 import { SunMark } from "@/components/ui/SunMark";
 import { site } from "@/lib/site";
@@ -14,7 +14,16 @@ const fadeUp = {
   }),
 };
 
+// Soft, breathing glow behind the "shine." word — three shadow layers so it
+// reads as warm light rather than a flat drop shadow.
+const glowShadow = (intensity: number) =>
+  `0 0 ${14 * intensity}px rgba(255, 201, 77, ${0.45 * intensity}), ` +
+  `0 0 ${34 * intensity}px rgba(255, 201, 77, ${0.3 * intensity}), ` +
+  `0 0 ${64 * intensity}px rgba(255, 201, 77, ${0.18 * intensity})`;
+
 export function HomeHero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="relative overflow-hidden bg-cream">
       {/* soft floating earth-tone blobs */}
@@ -30,21 +39,41 @@ export function HomeHero() {
         animate={{ y: [0, -16, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* warm horizon glow that brightens in as the sun rises */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-honey/25 blur-3xl"
-        animate={{ y: [0, 14, 0] }}
-        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.35 }}
+        transition={{ duration: 2.2, delay: 0.3, ease: "easeOut" }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-honey/40 via-honey/10 to-transparent blur-2xl"
       />
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0, scale: 0.8, rotate: -12 }}
-        animate={{ opacity: 0.5, scale: 1, rotate: 0 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] as const }}
-        className="pointer-events-none absolute right-8 top-24 hidden text-sand-dark md:block"
-      >
-        <SunMark className="h-24 w-24" />
-      </motion.div>
+
+      {/* Rising sun */}
+      <div className="pointer-events-none absolute right-6 top-16 hidden md:block lg:right-16">
+        <motion.div
+          aria-hidden
+          initial={{ opacity: 0, y: 130 }}
+          animate={{ opacity: 0.65, y: 0 }}
+          transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="relative"
+        >
+          {/* glowing halo behind the sun, pulsing gently once risen */}
+          <motion.div
+            aria-hidden
+            className="absolute left-1/2 top-1/2 -z-10 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-3xl"
+            animate={shouldReduceMotion ? { opacity: 0.35 } : { opacity: [0.25, 0.45, 0.25], scale: [1, 1.12, 1] }}
+            transition={shouldReduceMotion ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+          <motion.div
+            animate={shouldReduceMotion ? undefined : { rotate: 360 }}
+            transition={shouldReduceMotion ? undefined : { duration: 90, repeat: Infinity, ease: "linear" }}
+            className="text-gold"
+          >
+            <SunMark className="h-24 w-24" />
+          </motion.div>
+        </motion.div>
+      </div>
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-24 pt-28 text-center sm:pt-36">
         <motion.div
@@ -65,7 +94,21 @@ export function HomeHero() {
           className="font-display text-5xl leading-[1.05] text-clay-900 sm:text-6xl"
         >
           Let your light
-          <span className="block italic text-terracotta-dark">shine.</span>
+          <motion.span
+            className="block italic text-gold"
+            animate={
+              shouldReduceMotion
+                ? { textShadow: glowShadow(0.8) }
+                : { textShadow: [glowShadow(0.55), glowShadow(1), glowShadow(0.55)] }
+            }
+            transition={
+              shouldReduceMotion
+                ? undefined
+                : { duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }
+            }
+          >
+            shine.
+          </motion.span>
         </motion.h1>
 
         <motion.p
