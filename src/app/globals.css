@@ -39,9 +39,10 @@
   --color-mist-dark: #7c8b8c;
   --color-mist-light: #dce3e3;
 
-  /* Gold — the bright "shine" glow, reserved for the hero's hero word + sunrise */
+  /* Gold — the bright "shine" glow, reserved for the hero headline + sunrise */
   --color-gold: #ffc94d;
   --color-gold-dark: #d69f2e;
+  --color-gold-bright: #ffe066;
 
   --color-clay-900: #453a2f;
   --color-clay-700: #6b5c4c;
@@ -73,6 +74,7 @@
   --color-mist-light: var(--color-mist-light);
   --color-gold: var(--color-gold);
   --color-gold-dark: var(--color-gold-dark);
+  --color-gold-bright: var(--color-gold-bright);
   --color-clay-900: var(--color-clay-900);
   --color-clay-700: var(--color-clay-700);
   --color-clay-500: var(--color-clay-500);

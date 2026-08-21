@@ -3,7 +3,7 @@
 
 export const site = {
   name: "Shine Ministries",
-  tagline: "Let your light shine.",
+  tagline: "Brighter and Brighter.",
   verse: {
     text: "“The path of the righteous is like the morning sun, shining ever brighter till the full light of day.”",
     reference: "Proverbs 4:18",

@@ -14,12 +14,26 @@ const fadeUp = {
   }),
 };
 
-// Soft, breathing glow behind the "shine." word — three shadow layers so it
-// reads as warm light rather than a flat drop shadow.
-const glowShadow = (intensity: number) =>
-  `0 0 ${14 * intensity}px rgba(255, 201, 77, ${0.45 * intensity}), ` +
-  `0 0 ${34 * intensity}px rgba(255, 201, 77, ${0.3 * intensity}), ` +
-  `0 0 ${64 * intensity}px rgba(255, 201, 77, ${0.18 * intensity})`;
+// Warm, layered glow — three shadow layers so it reads as light rather than
+// a flat drop shadow. `rgb` lets the second "Brighter" glow a shade hotter
+// than the first, visually echoing the phrase itself.
+const glowShadow = (intensity: number, rgb = "255, 201, 77") =>
+  `0 0 ${14 * intensity}px rgba(${rgb}, ${0.45 * intensity}), ` +
+  `0 0 ${34 * intensity}px rgba(${rgb}, ${0.3 * intensity}), ` +
+  `0 0 ${64 * intensity}px rgba(${rgb}, ${0.18 * intensity})`;
+
+// Both words ramp from a dim gold up to full brightness, hold there, then
+// briefly reset — read together it plays as "brighter, and brighter still"
+// rather than a simple back-and-forth pulse.
+const brightenKeyframes = (rgb: string, peak: number) => ({
+  textShadow: [
+    glowShadow(peak * 0.25, rgb),
+    glowShadow(peak, rgb),
+    glowShadow(peak, rgb),
+    glowShadow(peak, rgb),
+    glowShadow(peak * 0.25, rgb),
+  ],
+});
 
 export function HomeHero() {
   const shouldReduceMotion = useReducedMotion();
@@ -91,23 +105,37 @@ export function HomeHero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="font-display text-5xl leading-[1.05] text-clay-900 sm:text-6xl"
+          className="font-display text-5xl leading-[1.05] sm:text-6xl"
         >
-          Let your light
           <motion.span
-            className="block italic text-gold"
+            className="block text-gold-dark"
             animate={
               shouldReduceMotion
                 ? { textShadow: glowShadow(0.8) }
-                : { textShadow: [glowShadow(0.55), glowShadow(1), glowShadow(0.55)] }
+                : brightenKeyframes("255, 201, 77", 0.85)
             }
             transition={
               shouldReduceMotion
                 ? undefined
-                : { duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }
+                : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1, times: [0, 0.25, 0.6, 0.9, 1] }
             }
           >
-            shine.
+            Brighter and
+          </motion.span>
+          <motion.span
+            className="block italic text-gold"
+            animate={
+              shouldReduceMotion
+                ? { textShadow: glowShadow(1.15, "255, 224, 102") }
+                : brightenKeyframes("255, 224, 102", 1.15)
+            }
+            transition={
+              shouldReduceMotion
+                ? undefined
+                : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.4, times: [0, 0.25, 0.6, 0.9, 1] }
+            }
+          >
+            Brighter.
           </motion.span>
         </motion.h1>
 
