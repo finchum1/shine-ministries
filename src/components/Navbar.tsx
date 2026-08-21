@@ -5,13 +5,15 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SunMark } from "@/components/ui/SunMark";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
+import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { open: openContactModal } = useContactModal();
 
   // Close the mobile menu on navigation. Following React's guidance for
   // "adjusting state when a prop changes," this compares during render
@@ -62,8 +64,15 @@ export function Navbar() {
               </Link>
             );
           })}
-          <ButtonLink href="/get-involved" className="!px-5 !py-2.5">
-            Get Involved
+          <Button
+            variant="ghost"
+            onClick={openContactModal}
+            className="!px-5 !py-2.5"
+          >
+            Contact
+          </Button>
+          <ButtonLink href="/donate" className="!px-5 !py-2.5">
+            Donate
           </ButtonLink>
         </div>
 
@@ -117,6 +126,19 @@ export function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: site.nav.length * 0.05 }}
+                className="mt-3 flex flex-col gap-2 border-t border-clay-900/10 pt-3"
+              >
+                <Button variant="ghost" onClick={openContactModal} className="w-full">
+                  Contact
+                </Button>
+                <ButtonLink href="/donate" fullWidth>
+                  Donate
+                </ButtonLink>
+              </motion.div>
             </div>
           </motion.div>
         )}

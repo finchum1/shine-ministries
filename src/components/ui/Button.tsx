@@ -25,17 +25,20 @@ export function ButtonLink({
   children,
   variant = "primary",
   className = "",
-}: ButtonBaseProps & { href: string }) {
+  fullWidth = false,
+}: ButtonBaseProps & { href: string; fullWidth?: boolean }) {
   return (
     <motion.div
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="inline-block"
+      className={fullWidth ? "block w-full" : "inline-block"}
     >
       <Link
         href={href}
-        className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-200 ${variants[variant]} ${className}`}
+        className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-200 ${
+          fullWidth ? "w-full" : ""
+        } ${variants[variant]} ${className}`}
       >
         {children}
       </Link>

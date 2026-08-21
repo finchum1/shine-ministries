@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "@/components/motion/Reveal";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ReachOutCTA } from "@/components/get-involved/ReachOutCTA";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { servingOpportunities, site } from "@/lib/site";
 
@@ -44,7 +44,7 @@ export default function GetInvolvedPage() {
 
       <section className="bg-cream-soft py-20 sm:py-24">
         <div className="mx-auto max-w-2xl px-6">
-          <ContactForm />
+          <ReachOutCTA />
         </div>
       </section>
 

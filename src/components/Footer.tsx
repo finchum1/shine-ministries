@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { SunMark } from "@/components/ui/SunMark";
+import { ButtonLink, Button } from "@/components/ui/Button";
+import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
 
 export function Footer() {
+  const { open: openContactModal } = useContactModal();
+
   return (
     <footer className="border-t border-clay-900/10 bg-cream-soft">
       <div className="mx-auto max-w-6xl px-6 py-14">
@@ -15,6 +21,9 @@ export function Footer() {
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-clay-700">
               {site.tagline}
             </p>
+            <ButtonLink href="/donate" className="mt-5 !px-5 !py-2.5">
+              Donate
+            </ButtonLink>
           </div>
 
           <div>
@@ -40,6 +49,15 @@ export function Footer() {
               Connect
             </p>
             <ul className="mt-4 space-y-2.5 text-sm text-clay-700">
+              <li>
+                <Button
+                  variant="ghost"
+                  onClick={openContactModal}
+                  className="!px-4 !py-2 !text-sm"
+                >
+                  Send us a message
+                </Button>
+              </li>
               <li>
                 <a href={`mailto:${site.email}`} className="transition-colors hover:text-terracotta-dark">
                   {site.email}
