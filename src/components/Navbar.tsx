@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { SunMark } from "@/components/ui/SunMark";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
@@ -41,9 +41,15 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2 text-clay-900">
-          <SunMark className="h-8 w-8 text-terracotta" />
-          <span className="font-display text-xl tracking-wide">{site.name}</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/brand/shine-logo.png"
+            alt={site.name}
+            width={1000}
+            height={517}
+            priority
+            className="h-11 w-auto sm:h-12"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

@@ -5,8 +5,8 @@ export const site = {
   name: "Shine Ministries",
   tagline: "Let your light shine.",
   verse: {
-    text: "“In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.”",
-    reference: "Matthew 5:16",
+    text: "“The path of the righteous is like the morning sun, shining ever brighter till the full light of day.”",
+    reference: "Proverbs 4:18",
   },
   // Mirrors the real mission line from the Shine Ministries OK Facebook page.
   description:

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SunMark } from "@/components/ui/SunMark";
+import Image from "next/image";
 import { ButtonLink, Button } from "@/components/ui/Button";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
@@ -14,10 +14,13 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="sm:col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 text-clay-900">
-              <SunMark className="h-7 w-7 text-terracotta" />
-              <span className="font-display text-lg">{site.name}</span>
-            </div>
+            <Image
+              src="/brand/shine-logo.png"
+              alt={site.name}
+              width={1000}
+              height={517}
+              className="h-10 w-auto"
+            />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-clay-700">
               {site.tagline}
             </p>
