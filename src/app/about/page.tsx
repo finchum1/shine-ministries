@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { site, values, founder } from "@/lib/site";
 
@@ -69,6 +70,31 @@ export default function AboutPage() {
                 <div className="h-full rounded-2xl bg-white p-8 shadow-sm ring-1 ring-clay-900/5">
                   <h3 className="font-display text-xl text-clay-900">{value.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-clay-700">{value.description}</p>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      <section className="bg-lavender/12 py-20 sm:py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <SunMark className="mx-auto mb-5 h-8 w-8 text-lavender-dark" />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-lavender-dark">
+              Words We Hold Onto
+            </p>
+          </Reveal>
+          <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2">
+            {site.verses.map((v) => (
+              <RevealItem key={v.reference}>
+                <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-lavender-dark/15">
+                  <p className="font-display text-xl italic leading-relaxed text-clay-900">
+                    {v.text}
+                  </p>
+                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-lavender-dark">
+                    {v.reference}
+                  </p>
                 </div>
               </RevealItem>
             ))}
