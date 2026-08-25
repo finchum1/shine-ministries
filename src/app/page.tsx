@@ -39,7 +39,7 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <SectionHeading
             eyebrow="What We're About"
-            title="Community, growth, and service"
+            title="Community, growth, and fun"
             description="Everything we do flows from these three commitments — to each other, to God's Word, and to the world around us."
           />
           <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-3">

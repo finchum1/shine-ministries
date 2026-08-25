@@ -58,9 +58,9 @@ export const values = [
     icon: "leaf",
   },
   {
-    title: "Service",
+    title: "Fun",
     description:
-      "We look outward, using our gifts to serve our church, our neighbors, and our community with open hands and open hearts.",
+      "We make room for laughter and lightness — retreats, game nights, and shared meals that remind us faith is meant to be enjoyed together.",
     icon: "sun",
   },
 ];
