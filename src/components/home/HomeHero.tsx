@@ -63,8 +63,9 @@ export function HomeHero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-honey/40 via-honey/10 to-transparent blur-2xl"
       />
 
-      {/* Rising sun */}
-      <div className="pointer-events-none absolute right-6 top-16 hidden md:block lg:right-16">
+      {/* Rising sun — visible at every size, scaling up from a compact
+          top-corner accent on mobile to the full desktop treatment. */}
+      <div className="pointer-events-none absolute right-3 top-3 sm:right-6 sm:top-16 lg:right-16">
         <motion.div
           aria-hidden
           initial={{ opacity: 0, y: 130 }}
@@ -75,7 +76,7 @@ export function HomeHero() {
           {/* glowing halo behind the sun, pulsing gently once risen */}
           <motion.div
             aria-hidden
-            className="absolute left-1/2 top-1/2 -z-10 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-3xl"
+            className="absolute left-1/2 top-1/2 -z-10 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-2xl sm:h-44 sm:w-44 sm:blur-3xl md:h-56 md:w-56"
             animate={shouldReduceMotion ? { opacity: 0.35 } : { opacity: [0.25, 0.45, 0.25], scale: [1, 1.12, 1] }}
             transition={shouldReduceMotion ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
@@ -84,7 +85,7 @@ export function HomeHero() {
             transition={shouldReduceMotion ? undefined : { duration: 90, repeat: Infinity, ease: "linear" }}
             className="text-gold"
           >
-            <SunMark className="h-24 w-24" />
+            <SunMark className="h-12 w-12 sm:h-20 sm:w-20 md:h-24 md:w-24" />
           </motion.div>
         </motion.div>
       </div>
