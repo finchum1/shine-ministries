@@ -62,7 +62,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Mark Your Calendar"
             title="Upcoming events"
-            description="A few of the gatherings coming up soon — we'd love to see you there."
+            description="This semester's gatherings — we'd love to see you there!"
           />
           <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((event) => (
