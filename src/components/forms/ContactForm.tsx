@@ -11,9 +11,24 @@ const initialState: ActionResult | null = null;
 const inputClass =
   "w-full rounded-xl border border-clay-900/12 bg-cream px-4 py-3 text-sm text-clay-900 outline-none transition-shadow placeholder:text-clay-500 focus:border-terracotta focus:ring-2 focus:ring-terracotta/30";
 
+// The topic dropdown's contents depend on how the modal was opened: the
+// everyday Contact button offers general inquiries, while the founder's
+// "Book Me" CTA only offers the two things you'd actually book her for.
+const topicOptionsByMode = {
+  general: [
+    { value: "general", label: "General question" },
+    { value: "prayer_request", label: "Prayer request" },
+  ],
+  booking: [
+    { value: "counseling", label: "Book Counseling Session" },
+    { value: "speaking", label: "Book Speaking Engagement" },
+  ],
+};
+
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
-  const { topic } = useContactModal();
+  const { topic, mode } = useContactModal();
+  const topicOptions = topicOptionsByMode[mode];
 
   return (
     <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-clay-900/5 sm:p-10">
@@ -41,10 +56,16 @@ export function ContactForm() {
             <input name="full_name" required placeholder="Full name" className={inputClass} />
             <input name="email" type="email" required placeholder="Email address" className={inputClass} />
             <input name="phone" placeholder="Phone (optional)" className={`${inputClass} sm:col-span-1`} />
-            <select name="topic" defaultValue={topic ?? "general"} className={inputClass}>
-              <option value="general">General question</option>
-              <option value="prayer_request">Prayer request</option>
-              <option value="speaking">Book Gina to speak</option>
+            <select
+              name="topic"
+              defaultValue={topic ?? topicOptions[0].value}
+              className={inputClass}
+            >
+              {topicOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
             <textarea
               name="message"

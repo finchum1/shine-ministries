@@ -8,5 +8,7 @@ import { useContactModal } from "@/components/contact/ContactModalContext";
 export function BookMeCTA() {
   const { open } = useContactModal();
 
-  return <Button onClick={() => open("speaking")}>Book Me</Button>;
+  return (
+    <Button onClick={() => open({ mode: "booking", topic: "counseling" })}>Book Me</Button>
+  );
 }
