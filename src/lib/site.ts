@@ -34,6 +34,10 @@ export const site = {
     instagram: "https://instagram.com/shineministriesok",
     facebook: "https://www.facebook.com/profile.php?id=61589769434289",
   },
+  // How We Began photo carousel — shows 3 at a time, aiming for 12 total.
+  // Only the original group photo is in hand so far; add more file paths
+  // here (saved to public/brand/) as Terrence supplies them.
+  groupPhotos: ["/brand/group-photo.jpg"],
   // Bible Studies and Get Involved are built (src/app/bible-studies,
   // src/app/get-involved) but intentionally left out of nav for now —
   // add them back here when ready to relaunch those pages.

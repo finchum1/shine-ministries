@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { BookMeCTA } from "@/components/about/BookMeCTA";
+import { PhotoCarousel } from "@/components/about/PhotoCarousel";
 import { site, values, founder } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,8 +23,8 @@ export default function AboutPage() {
       />
 
       <section className="bg-cream py-20 sm:py-24">
-        <div className="mx-auto grid max-w-5xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
-          <Reveal>
+        <div className="mx-auto max-w-5xl px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
               How We Began
             </p>
@@ -34,16 +35,8 @@ export default function AboutPage() {
               <p>Insert story of Wise Warriors.</p>
             </div>
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl shadow-inner lg:max-w-none">
-              <Image
-                src="/brand/group-photo.jpg"
-                alt="Women of Shine Ministries together at a retreat"
-                fill
-                sizes="(min-width: 1024px) 40vw, 384px"
-                className="object-cover"
-              />
-            </div>
+          <Reveal delay={0.1} className="mt-12">
+            <PhotoCarousel photos={site.groupPhotos} altPrefix="Women of Shine Ministries" />
           </Reveal>
         </div>
       </section>
