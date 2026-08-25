@@ -18,10 +18,7 @@ export function ContactForm() {
   return (
     <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-clay-900/5 sm:p-10">
       <h3 className="font-display text-2xl text-clay-900">Reach Out</h3>
-      <p className="mt-2 text-sm leading-relaxed text-clay-700">
-        Whether you want to serve, share a prayer request, or just say hello — we&rsquo;d love to
-        hear from you.
-      </p>
+      <p className="mt-2 text-sm leading-relaxed text-clay-700">We&rsquo;d love to hear from you.</p>
 
       <AnimatePresence mode="wait">
         {state?.ok ? (
@@ -44,11 +41,10 @@ export function ContactForm() {
             <input name="full_name" required placeholder="Full name" className={inputClass} />
             <input name="email" type="email" required placeholder="Email address" className={inputClass} />
             <input name="phone" placeholder="Phone (optional)" className={`${inputClass} sm:col-span-1`} />
-            <select name="topic" defaultValue={topic ?? "volunteer"} className={inputClass}>
-              <option value="volunteer">I&rsquo;d like to volunteer</option>
+            <select name="topic" defaultValue={topic ?? "general"} className={inputClass}>
+              <option value="general">General question</option>
               <option value="prayer_request">Prayer request</option>
               <option value="speaking">Book Gina to speak</option>
-              <option value="general">General question</option>
             </select>
             <textarea
               name="message"
