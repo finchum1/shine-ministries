@@ -124,10 +124,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-sage/10 py-20 sm:py-24">
+      <section className="bg-lavender-dark py-20 sm:py-24">
         <Reveal className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="font-display text-3xl text-clay-900 sm:text-4xl">New here?</h2>
-          <p className="mt-4 text-base leading-relaxed text-clay-700">
+          <h2 className="font-display text-3xl text-cream sm:text-4xl">New here?</h2>
+          <p className="mt-4 text-base leading-relaxed text-cream/70">
             We&rsquo;d love to meet you. Come as you are — no experience with Bible study or church
             required, just an open heart. {site.ageNote}.
           </p>
@@ -135,7 +135,7 @@ export default function AboutPage() {
             {site.serviceArea.map((city) => (
               <span
                 key={city}
-                className="rounded-full bg-linen/40 px-4 py-1.5 text-xs font-medium text-clay-700 ring-1 ring-linen-dark/25"
+                className="rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-cream ring-1 ring-white/20"
               >
                 {city}, OK
               </span>
