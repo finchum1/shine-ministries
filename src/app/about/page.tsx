@@ -27,7 +27,7 @@ export default function AboutPage() {
               How We Began
             </p>
             <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
-              Born from a handful of women meeting around a kitchen table
+              It all started in a living room
             </h2>
             <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
               <p>
