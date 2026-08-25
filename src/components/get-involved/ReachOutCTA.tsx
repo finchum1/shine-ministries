@@ -14,7 +14,7 @@ export function ReachOutCTA() {
         hear from you.
       </p>
       <div className="mt-6">
-        <Button onClick={open}>Send Us a Message</Button>
+        <Button onClick={() => open()}>Send Us a Message</Button>
       </div>
     </div>
   );

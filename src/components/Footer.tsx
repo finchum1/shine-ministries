@@ -55,7 +55,7 @@ export function Footer() {
               <li>
                 <Button
                   variant="ghost"
-                  onClick={openContactModal}
+                  onClick={() => openContactModal()}
                   className="!px-4 !py-2 !text-sm"
                 >
                   Send us a message

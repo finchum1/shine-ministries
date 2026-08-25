@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitContactForm, ActionResult } from "@/app/actions";
 import { Button } from "@/components/ui/Button";
+import { useContactModal } from "@/components/contact/ContactModalContext";
 
 const initialState: ActionResult | null = null;
 
@@ -12,6 +13,7 @@ const inputClass =
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
+  const { topic } = useContactModal();
 
   return (
     <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-clay-900/5 sm:p-10">
@@ -42,9 +44,10 @@ export function ContactForm() {
             <input name="full_name" required placeholder="Full name" className={inputClass} />
             <input name="email" type="email" required placeholder="Email address" className={inputClass} />
             <input name="phone" placeholder="Phone (optional)" className={`${inputClass} sm:col-span-1`} />
-            <select name="topic" defaultValue="volunteer" className={inputClass}>
+            <select name="topic" defaultValue={topic ?? "volunteer"} className={inputClass}>
               <option value="volunteer">I&rsquo;d like to volunteer</option>
               <option value="prayer_request">Prayer request</option>
+              <option value="speaking">Book Gina to speak</option>
               <option value="general">General question</option>
             </select>
             <textarea

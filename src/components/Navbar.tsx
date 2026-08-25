@@ -82,7 +82,7 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center justify-end gap-3">
-          <Button variant="ghost" onClick={openContactModal} className="!px-5 !py-2.5">
+          <Button variant="ghost" onClick={() => openContactModal()} className="!px-5 !py-2.5">
             Contact
           </Button>
           <ButtonLink href="/donate" className="!px-5 !py-2.5">
@@ -160,7 +160,7 @@ export function Navbar() {
                 transition={{ delay: site.nav.length * 0.05 }}
                 className="mt-3 flex flex-col gap-2 border-t border-clay-900/10 pt-3"
               >
-                <Button variant="ghost" onClick={openContactModal} className="w-full">
+                <Button variant="ghost" onClick={() => openContactModal()} className="w-full">
                   Contact
                 </Button>
                 <ButtonLink href="/donate" fullWidth>

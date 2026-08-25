@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { BookMeCTA } from "@/components/about/BookMeCTA";
 import { site, values, founder } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -30,17 +31,7 @@ export default function AboutPage() {
               It all started in a living room
             </h2>
             <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
-              <p>
-                Shine Ministries started small — a few women in the Oklahoma City area gathering to
-                pray, study Scripture, and encourage one another through the everyday realities of
-                life. What began as a simple weekly meeting has grown into a community of women
-                from all walks of life, united by a shared desire to know God more deeply and love
-                others well.
-              </p>
-              <p>
-                Today, we exist to help women take their next step in faith — through Bible study,
-                friendship, and hands-on service — no matter where they&rsquo;re starting from.
-              </p>
+              <p>Insert story of Wise Warriors.</p>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -126,6 +117,9 @@ export default function AboutPage() {
               {founder.role}, Shine Ministries
             </p>
             <p className="mt-5 text-base leading-relaxed text-clay-700">{founder.bio}</p>
+            <div className="mt-6">
+              <BookMeCTA />
+            </div>
           </Reveal>
         </div>
       </section>

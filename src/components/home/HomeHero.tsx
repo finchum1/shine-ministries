@@ -173,7 +173,7 @@ export function HomeHero() {
           animate="show"
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <Button onClick={openContactModal}>Get in Touch</Button>
+          <Button onClick={() => openContactModal()}>Get in Touch</Button>
           <ButtonLink href="/events" variant="secondary">
             See What&rsquo;s Happening
           </ButtonLink>
