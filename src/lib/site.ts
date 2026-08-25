@@ -21,7 +21,7 @@ export const site = {
     },
   ],
   description:
-    "Gathering and empowering women to cultivate a healthy soul that shines His glory.",
+    "Gathering and empowering women to cultivate a healthy soul to shine His glory.",
   ageNote: "All women welcome, ages 17+",
   email: "shineministriesoklahoma@gmail.com",
   // Real service area, from the Shine Ministries OK Facebook page.
