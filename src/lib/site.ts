@@ -34,10 +34,27 @@ export const site = {
     instagram: "https://instagram.com/shineministriesok",
     facebook: "https://www.facebook.com/profile.php?id=61589769434289",
   },
-  // How We Began photo carousel — shows 3 at a time, aiming for 12 total.
-  // Only the original group photo is in hand so far; add more file paths
-  // here (saved to public/brand/) as Terrence supplies them.
-  groupPhotos: ["/brand/group-photo.jpg"],
+  // How We Began photo carousel — moves through 3 at a time, auto-advancing.
+  groupPhotos: [
+    "/brand/group-photo.jpg",
+    "/brand/group-photo-02.jpg",
+    "/brand/group-photo-03.jpg",
+    "/brand/group-photo-04.jpg",
+    "/brand/group-photo-05.jpg",
+    "/brand/group-photo-06.jpg",
+    "/brand/group-photo-07.jpg",
+    "/brand/group-photo-08.jpg",
+    "/brand/group-photo-09.jpg",
+    "/brand/group-photo-10.jpg",
+    "/brand/group-photo-11.jpg",
+    "/brand/group-photo-12.jpg",
+    "/brand/group-photo-13.jpg",
+    "/brand/group-photo-14.jpg",
+    "/brand/group-photo-15.jpg",
+    "/brand/group-photo-16.jpg",
+    "/brand/group-photo-17.jpg",
+    "/brand/group-photo-18.jpg",
+  ],
   // Bible Studies and Get Involved are built (src/app/bible-studies,
   // src/app/get-involved) but intentionally left out of nav for now —
   // add them back here when ready to relaunch those pages.
