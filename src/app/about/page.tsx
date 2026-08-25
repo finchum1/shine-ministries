@@ -76,7 +76,7 @@ export default function AboutPage() {
               Words We Hold Onto
             </p>
           </Reveal>
-          <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2">
+          <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {site.verses.map((v) => (
               <RevealItem key={v.reference}>
                 <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-lavender-dark/15">

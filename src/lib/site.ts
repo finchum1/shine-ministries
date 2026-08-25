@@ -8,8 +8,8 @@ export const site = {
     text: "“The path of the righteous is like the morning sun, shining ever brighter till the full light of day.”",
     reference: "Proverbs 4:18",
   },
-  // Two more verses the ministry holds close — 2 Corinthians 3:18 was the
-  // theme of the "Glory to Glory" retreat pictured on the About page.
+  // Verses the ministry holds close — 2 Corinthians 3:18 was the theme of
+  // the "Glory to Glory" retreat pictured on the About page.
   verses: [
     {
       text: "“Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.”",
@@ -18,6 +18,10 @@ export const site = {
     {
       text: "“And we all, who with unveiled faces contemplate the Lord's glory, are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit.”",
       reference: "2 Corinthians 3:18",
+    },
+    {
+      text: "“Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is — his good, pleasing and perfect will.”",
+      reference: "Romans 12:2",
     },
   ],
   description:
