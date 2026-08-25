@@ -98,9 +98,9 @@ export function HomeHero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-6 inline-flex items-center gap-2 rounded-full bg-sage/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sage-dark"
+          className="mb-6 max-w-xl rounded-full bg-sage/15 px-6 py-3 text-center text-xs font-semibold uppercase leading-relaxed tracking-[0.2em] text-sage-dark"
         >
-          Women&rsquo;s Ministry
+          {site.description}
         </motion.div>
 
         <motion.h1
@@ -141,16 +141,6 @@ export function HomeHero() {
             Brighter.
           </motion.span>
         </motion.h1>
-
-        <motion.p
-          custom={0.2}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-clay-700"
-        >
-          {site.description}
-        </motion.p>
 
         <motion.div
           custom={0.32}
