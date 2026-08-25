@@ -98,7 +98,7 @@ export function HomeHero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-6 max-w-xl rounded-full bg-sage/15 px-6 py-3 text-center text-xs font-semibold uppercase leading-relaxed tracking-[0.2em] text-sage-dark"
+          className="mb-6 max-w-xl rounded-full bg-sage/15 px-6 py-3 text-center text-xs font-semibold leading-relaxed tracking-[0.2em] text-sage-dark"
         >
           {site.description}
         </motion.div>
