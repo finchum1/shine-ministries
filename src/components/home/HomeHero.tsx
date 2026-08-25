@@ -92,7 +92,7 @@ export function HomeHero() {
         </motion.div>
       </div>
 
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-24 pt-28 text-center sm:pt-36">
+      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-24 pt-10 text-center sm:pt-14">
         <motion.div
           custom={0}
           variants={fadeUp}
