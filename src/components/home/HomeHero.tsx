@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { SunMark } from "@/components/ui/SunMark";
 import { useContactModal } from "@/components/contact/ContactModalContext";
-import { site } from "@/lib/site";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -93,38 +92,17 @@ export function HomeHero() {
       </div>
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-24 pt-10 text-center sm:pt-14">
-        {/* Arched mission statement — SVG curved text on larger screens where
-            it stays legible; a plain readable line on mobile instead, since
-            the arc would scale down to near-illegible size there. */}
-        <motion.div
-          custom={0}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mb-2 hidden w-full max-w-3xl sm:block"
-        >
-          <svg viewBox="0 0 1000 210" className="h-auto w-full" role="img" aria-label={site.description}>
-            <defs>
-              <path id="heroArch" d="M 15 185 Q 500 20 985 185" fill="none" />
-            </defs>
-            <text
-              className="fill-sage-dark font-semibold"
-              style={{ fontFamily: "var(--font-inter)", fontSize: "21px", letterSpacing: "0.01em" }}
-            >
-              <textPath href="#heroArch" startOffset="50%" textAnchor="middle">
-                {site.description}
-              </textPath>
-            </text>
-          </svg>
-        </motion.div>
+        {/* Mission statement, on two fixed lines rather than left to wrap
+            naturally at arbitrary widths. */}
         <motion.p
           custom={0}
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-6 max-w-sm text-center text-sm font-semibold leading-relaxed tracking-wide text-sage-dark sm:hidden"
+          className="mb-6 text-lg font-semibold leading-relaxed tracking-wide text-sage-dark sm:text-xl"
         >
-          {site.description}
+          <span className="block">Gathering and empowering women</span>
+          <span className="block">to cultivate a healthy soul to shine His glory.</span>
         </motion.p>
 
         <motion.h1
