@@ -20,9 +20,8 @@ export const site = {
       reference: "2 Corinthians 3:18",
     },
   ],
-  // Mirrors the real mission line from the Shine Ministries OK Facebook page.
   description:
-    "Helping women in Oklahoma City and the surrounding areas build genuine Christian community and connection. All women are welcome, ages 17 and up.",
+    "Gathering and empowering women to cultivate a healthy soul that shines His glory.",
   ageNote: "All women welcome, ages 17+",
   email: "shineministriesoklahoma@gmail.com",
   // Real service area, from the Shine Ministries OK Facebook page.
@@ -31,12 +30,13 @@ export const site = {
     instagram: "https://instagram.com/shineministriesok",
     facebook: "https://www.facebook.com/profile.php?id=61589769434289",
   },
+  // Bible Studies and Get Involved are built (src/app/bible-studies,
+  // src/app/get-involved) but intentionally left out of nav for now —
+  // add them back here when ready to relaunch those pages.
   nav: [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
-    { href: "/bible-studies", label: "Bible Studies" },
-    { href: "/get-involved", label: "Get Involved" },
   ],
 };
 

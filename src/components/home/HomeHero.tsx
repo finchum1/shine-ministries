@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { SunMark } from "@/components/ui/SunMark";
+import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
 
 const fadeUp = {
@@ -37,6 +38,7 @@ const brightenKeyframes = (rgb: string, peak: number) => ({
 
 export function HomeHero() {
   const shouldReduceMotion = useReducedMotion();
+  const { open: openContactModal } = useContactModal();
 
   return (
     <section className="relative overflow-hidden bg-cream">
@@ -157,7 +159,7 @@ export function HomeHero() {
           animate="show"
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <ButtonLink href="/bible-studies">Join a Bible Study</ButtonLink>
+          <Button onClick={openContactModal}>Get in Touch</Button>
           <ButtonLink href="/events" variant="secondary">
             See What&rsquo;s Happening
           </ButtonLink>

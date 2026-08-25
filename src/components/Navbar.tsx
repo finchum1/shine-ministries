@@ -9,6 +9,30 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
 
+function NavLinks({ pathname }: { pathname: string }) {
+  return (
+    <>
+      {site.nav.map((item) => {
+        const active = pathname === item.href;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="group relative py-1 text-sm font-medium text-clay-700 transition-colors hover:text-clay-900"
+          >
+            {item.label}
+            <span
+              className={`absolute -bottom-0.5 left-0 h-[2px] rounded-full bg-terracotta transition-all duration-300 ${
+                active ? "w-full" : "w-0 group-hover:w-full"
+              }`}
+            />
+          </Link>
+        );
+      })}
+    </>
+  );
+}
+
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -36,11 +60,39 @@ export function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-cream/90 backdrop-blur-md shadow-[0_1px_0_rgba(69,58,47,0.08)]"
-          : "bg-cream/60 backdrop-blur-sm"
+          ? "bg-lavender/30 backdrop-blur-md shadow-[0_1px_0_rgba(69,58,47,0.08)]"
+          : "bg-lavender/15 backdrop-blur-sm"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      {/* Desktop: nav links left / logo centered & larger / actions right */}
+      <nav className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-3 md:grid">
+        <div className="flex items-center gap-8">
+          <NavLinks pathname={pathname} />
+        </div>
+
+        <Link href="/" className="flex items-center justify-center">
+          <Image
+            src="/brand/shine-logo.png"
+            alt={site.name}
+            width={1000}
+            height={517}
+            priority
+            className="h-16 w-auto lg:h-20"
+          />
+        </Link>
+
+        <div className="flex items-center justify-end gap-3">
+          <Button variant="ghost" onClick={openContactModal} className="!px-5 !py-2.5">
+            Contact
+          </Button>
+          <ButtonLink href="/donate" className="!px-5 !py-2.5">
+            Donate
+          </ButtonLink>
+        </div>
+      </nav>
+
+      {/* Mobile: logo left, hamburger right */}
+      <div className="flex items-center justify-between px-6 py-4 md:hidden">
         <Link href="/" className="flex items-center">
           <Image
             src="/brand/shine-logo.png"
@@ -48,45 +100,15 @@ export function Navbar() {
             width={1000}
             height={517}
             priority
-            className="h-12 w-auto sm:h-14"
+            className="h-11 w-auto"
           />
         </Link>
-
-        <div className="hidden items-center gap-8 md:flex">
-          {site.nav.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group relative py-1 text-sm font-medium text-clay-700 transition-colors hover:text-clay-900"
-              >
-                {item.label}
-                <span
-                  className={`absolute -bottom-0.5 left-0 h-[2px] rounded-full bg-terracotta transition-all duration-300 ${
-                    active ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </Link>
-            );
-          })}
-          <Button
-            variant="ghost"
-            onClick={openContactModal}
-            className="!px-5 !py-2.5"
-          >
-            Contact
-          </Button>
-          <ButtonLink href="/donate" className="!px-5 !py-2.5">
-            Donate
-          </ButtonLink>
-        </div>
 
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
-          className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-1.5"
         >
           <motion.span
             animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
@@ -101,7 +123,7 @@ export function Navbar() {
             className="h-[2px] w-6 rounded-full bg-clay-900"
           />
         </button>
-      </nav>
+      </div>
 
       <AnimatePresence>
         {open && (
