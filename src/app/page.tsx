@@ -34,8 +34,29 @@ export default async function Home() {
         </Reveal>
       </section>
 
-      {/* Values */}
+      {/* Upcoming events */}
       <section className="bg-cream-soft py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <SectionHeading
+            eyebrow="Mark Your Calendar"
+            title="Upcoming events"
+            description="This semester's gatherings — we'd love to see you there!"
+          />
+          <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </RevealGroup>
+          <Reveal className="mt-12 text-center">
+            <ButtonLink href="/events" variant="secondary">
+              View All Events
+            </ButtonLink>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="bg-cream py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <SectionHeading
             eyebrow="What We're About"
@@ -53,27 +74,6 @@ export default async function Home() {
               </RevealItem>
             ))}
           </RevealGroup>
-        </div>
-      </section>
-
-      {/* Upcoming events */}
-      <section className="bg-cream py-20 sm:py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="Mark Your Calendar"
-            title="Upcoming events"
-            description="This semester's gatherings — we'd love to see you there!"
-          />
-          <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </RevealGroup>
-          <Reveal className="mt-12 text-center">
-            <ButtonLink href="/events" variant="secondary">
-              View All Events
-            </ButtonLink>
-          </Reveal>
         </div>
       </section>
 

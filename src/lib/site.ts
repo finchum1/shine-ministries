@@ -139,7 +139,7 @@ export const fallbackEvents = [
   {
     id: "fallback-2",
     title: "Shine Gathering",
-    description: "Join us for message, community, and fun.",
+    description: "Join us for a message, community, and fun.",
     event_date: "2026-09-28",
     event_time: "6:30 PM",
     location: "TBD",
@@ -147,7 +147,7 @@ export const fallbackEvents = [
   {
     id: "fallback-3",
     title: "Shine Gathering",
-    description: "Join us for message, community, and fun.",
+    description: "Join us for a message, community, and fun.",
     event_date: "2026-10-12",
     event_time: "6:30 PM",
     location: "TBD",
@@ -155,7 +155,7 @@ export const fallbackEvents = [
   {
     id: "fallback-4",
     title: "Shine Gathering",
-    description: "Join us for message, community, and fun.",
+    description: "Join us for a message, community, and fun.",
     event_date: "2026-10-26",
     event_time: "6:30 PM",
     location: "TBD",
@@ -163,7 +163,7 @@ export const fallbackEvents = [
   {
     id: "fallback-5",
     title: "Shine Gathering",
-    description: "Join us for message, community, and fun.",
+    description: "Join us for a message, community, and fun.",
     event_date: "2026-11-09",
     event_time: "6:30 PM",
     location: "TBD",
@@ -171,7 +171,7 @@ export const fallbackEvents = [
   {
     id: "fallback-6",
     title: "Shine Gathering",
-    description: "Join us for message, community, and fun.",
+    description: "Join us for a message, community, and fun.",
     event_date: "2026-11-23",
     event_time: "6:30 PM",
     location: "TBD",
@@ -179,7 +179,7 @@ export const fallbackEvents = [
   {
     id: "fallback-7",
     title: "Shine Gathering",
-    description: "Join us for message, community, and fun.",
+    description: "Join us for a message, community, and fun.",
     event_date: "2026-12-07",
     event_time: "6:30 PM",
     location: "TBD",
