@@ -8,7 +8,7 @@ export async function getUpcomingEvents(limit?: number): Promise<{ events: Event
   const today = new Date().toISOString().slice(0, 10);
   let query = supabase
     .from("events")
-    .select("id, title, description, event_date, event_time, location, image_url, rsvp_url")
+    .select("id, title, description, event_date, event_time, location, image_url, rsvp_url, is_featured")
     .eq("is_published", true)
     .gte("event_date", today)
     .order("event_date", { ascending: true });
@@ -48,6 +48,7 @@ export function formatEventDate(dateStr: string) {
   return {
     day: date.toLocaleDateString("en-US", { day: "numeric" }),
     month: date.toLocaleDateString("en-US", { month: "short" }),
+    weekday: date.toLocaleDateString("en-US", { weekday: "long" }),
     full: date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
   };
 }

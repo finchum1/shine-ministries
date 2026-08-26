@@ -134,6 +134,7 @@ export const fallbackEvents = [
     event_time: "6:30 – 8:30 PM",
     location: "The McGranahan Barn",
     rsvp_url: "https://evite.me/8zBGqXASyZ",
+    is_featured: true,
   },
   {
     id: "fallback-2",

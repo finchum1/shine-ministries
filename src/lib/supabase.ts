@@ -27,6 +27,7 @@ export type EventRow = {
   location: string | null;
   image_url?: string | null;
   rsvp_url?: string | null;
+  is_featured?: boolean;
 };
 
 export type BibleStudyRow = {
