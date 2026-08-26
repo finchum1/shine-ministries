@@ -18,7 +18,7 @@ export default async function EventsPage() {
       <PageHero
         eyebrow="Mark Your Calendar"
         title="Upcoming events"
-        description="From casual brunches to weekend retreats, here's what's coming up. We'd love for you to join us."
+        description="Bi-monthly Shine Gatherings, Small Groups, Prayer Walks, Retreats and more. We'd love for you to join us!"
       />
 
       <section className="bg-cream py-20 sm:py-24">
