@@ -31,8 +31,27 @@ export default function AboutPage() {
             <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
               It all started in a living room
             </h2>
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
-              <p>Insert story of Wise Warriors.</p>
+            <div className="mt-5 space-y-4 text-left text-base leading-relaxed text-clay-700">
+              <p>
+                Shine began simply—a small group of women gathering in my home for Bible study,
+                fellowship, and a shared desire to grow in God&rsquo;s Word. Over time, this
+                special group became affectionately known as the &ldquo;Wise Warriors.&rdquo;
+              </p>
+              <p>
+                Little by little, younger women began expressing an interest in joining us, and we
+                began inviting them in. What started as one small gathering grew into something
+                beautifully intergenerational—women of different ages and seasons of life learning
+                from one another, encouraging one another, and growing together in faith.
+              </p>
+              <p>
+                And now, here we are—gathering as one community of women with a shared purpose: to
+                know Jesus more deeply, to encourage one another wholeheartedly, and to shine the
+                light of the Gospel to the world around us.
+              </p>
+              <p>
+                What began in a living room has become Shine Ministries—women growing together,
+                loving one another, and carrying His light wherever we go.
+              </p>
             </div>
           </Reveal>
           <Reveal delay={0.1} className="mt-12">
@@ -64,7 +83,16 @@ export default function AboutPage() {
             <p className="mt-2 text-sm font-medium text-terracotta-dark">
               {founder.role}, Shine Ministries
             </p>
-            <p className="mt-5 text-base leading-relaxed text-clay-700">{founder.bio}</p>
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
+              {founder.bio.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={i === founder.bio.length - 1 ? "font-medium italic text-clay-900" : undefined}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
             <div className="mt-6">
               <BookMeCTA />
             </div>

@@ -86,11 +86,15 @@ export const values = [
   },
 ];
 
-// Real founder — bio is still being written; photo pending (public/brand/gina.jpg).
+// Real founder.
 export const founder = {
   name: "Gina Helms-Ouren",
   role: "Founder",
-  bio: "Gina's story is coming soon — check back for more about her heart behind Shine Ministries.",
+  bio: [
+    "Gina Helms is a Licensed Professional Counselor, Christian counselor, speaker, teacher, and founder of SHINE Ministry. She is passionate about helping people become emotionally and spiritually healthy by combining biblical truth with the principles of counseling and psychology.",
+    "Through counseling, teaching, and ministry, Gina helps people understand their identity, heal from unhealthy patterns, strengthen relationships, and experience genuine transformation from the inside out.",
+    "Her message is simple: Restoring Hearts. Renewing Hope. Helping people SHINE.",
+  ],
   photo: "/brand/gina.jpg",
 };
 
