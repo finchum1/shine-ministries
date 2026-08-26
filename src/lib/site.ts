@@ -121,35 +121,67 @@ export const servingOpportunities = [
   },
 ];
 
-// Fallback content shown when Supabase isn't configured yet or a table is empty,
-// so the site never looks broken before real data is added.
+// Real fall 2026 events. Also serves as fallback content shown whenever
+// Supabase isn't configured (which is the case right now — no events table
+// is wired up yet, so these are what actually renders on the live site).
 export const fallbackEvents = [
   {
     id: "fallback-1",
-    title: "Fall Kickoff Brunch",
+    title: "Shine Fall Kickoff Event",
     description:
-      "Join us for a cozy morning of good food, warm conversation, and an introduction to this season's Bible studies.",
-    event_date: "2026-09-12",
-    event_time: "10:00 AM",
-    location: "Fellowship Hall",
+      "Join us for a special night of worship, a powerful message, giveaways, sweet treats, and more.",
+    event_date: "2026-09-14",
+    event_time: "6:30 – 8:30 PM",
+    location: "The McGranahan Barn",
+    rsvp_url: "https://evite.me/8zBGqXASyZ",
   },
   {
     id: "fallback-2",
-    title: "Women's Retreat Weekend",
-    description:
-      "A weekend away to rest, reconnect with God, and build friendships that last well beyond the weekend.",
-    event_date: "2026-10-24",
-    event_time: "Friday–Sunday",
-    location: "Cedar Ridge Retreat Center",
+    title: "Shine Gathering",
+    description: "Join us for message, community, and fun.",
+    event_date: "2026-09-28",
+    event_time: "6:30 PM",
+    location: "TBD",
   },
   {
     id: "fallback-3",
-    title: "Christmas Tea & Testimony Night",
-    description:
-      "A festive evening of tea, treats, and stories of how God has been at work in the lives of women in our ministry.",
-    event_date: "2026-12-05",
+    title: "Shine Gathering",
+    description: "Join us for message, community, and fun.",
+    event_date: "2026-10-12",
     event_time: "6:30 PM",
-    location: "Fellowship Hall",
+    location: "TBD",
+  },
+  {
+    id: "fallback-4",
+    title: "Shine Gathering",
+    description: "Join us for message, community, and fun.",
+    event_date: "2026-10-26",
+    event_time: "6:30 PM",
+    location: "TBD",
+  },
+  {
+    id: "fallback-5",
+    title: "Shine Gathering",
+    description: "Join us for message, community, and fun.",
+    event_date: "2026-11-09",
+    event_time: "6:30 PM",
+    location: "TBD",
+  },
+  {
+    id: "fallback-6",
+    title: "Shine Gathering",
+    description: "Join us for message, community, and fun.",
+    event_date: "2026-11-23",
+    event_time: "6:30 PM",
+    location: "TBD",
+  },
+  {
+    id: "fallback-7",
+    title: "Shine Gathering",
+    description: "Join us for message, community, and fun.",
+    event_date: "2026-12-07",
+    event_time: "6:30 PM",
+    location: "TBD",
   },
 ];
 
