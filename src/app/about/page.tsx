@@ -19,7 +19,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Us"
         title="Our story"
-        description="A community of women pursuing God together, one season at a time."
+        description="Gathering to know Jesus more deeply, to encourage one another wholeheartedly, and to shine the light of the Gospel to the world around us."
       />
 
       <section className="bg-cream py-20 sm:py-24">
