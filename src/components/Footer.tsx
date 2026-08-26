@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ButtonLink, Button } from "@/components/ui/Button";
 import { useContactModal } from "@/components/contact/ContactModalContext";
+import { InstagramIcon, FacebookIcon } from "@/components/icons/SocialIcons";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -74,28 +75,26 @@ export function Footer() {
             <p className="text-sm font-semibold uppercase tracking-wide text-clay-900">
               Follow Along
             </p>
-            <ul className="mt-4 space-y-2.5 text-sm text-clay-700">
-              <li>
-                <a
-                  href={site.social.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-terracotta-dark"
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.social.facebook}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-terracotta-dark"
-                >
-                  Facebook
-                </a>
-              </li>
-            </ul>
+            <div className="mt-4 flex gap-3">
+              <a
+                href={site.social.instagram}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Shine Ministries on Instagram"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-clay-700 ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark hover:ring-terracotta/30"
+              >
+                <InstagramIcon />
+              </a>
+              <a
+                href={site.social.facebook}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Shine Ministries on Facebook"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-clay-700 ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark hover:ring-terracotta/30"
+              >
+                <FacebookIcon />
+              </a>
+            </div>
           </div>
         </div>
 

@@ -5,8 +5,8 @@ export const site = {
   name: "Shine Ministries",
   tagline: "Brighter and Brighter.",
   verse: {
-    text: "“The path of the righteous is like the morning sun, shining ever brighter till the full light of day.”",
-    reference: "Proverbs 4:18",
+    text: "“But the path of the righteous is like the light of dawn, which shines brighter and brighter until full day.”",
+    reference: "Proverbs 4:18 (ESV)",
   },
   // Verses the ministry holds close — 2 Corinthians 3:18 was the theme of
   // the "Glory to Glory" retreat pictured on the About page.
