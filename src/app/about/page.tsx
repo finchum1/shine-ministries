@@ -4,7 +4,6 @@ import { PageHero } from "@/components/PageHero";
 import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { BookMeCTA } from "@/components/about/BookMeCTA";
-import { PhotoCarousel } from "@/components/about/PhotoCarousel";
 import { site, founder } from "@/lib/site";
 
 // "Our Values" section is hidden for now — see the commented-out section
@@ -27,15 +26,15 @@ export default function AboutPage() {
       />
 
       <section className="bg-cream py-20 sm:py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-start">
+          <Reveal>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
               How We Began
             </p>
             <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
               It all started in a living room
             </h2>
-            <div className="mt-5 space-y-4 text-left text-base leading-relaxed text-clay-700">
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
               <p>
                 Shine began simply—a small group of women gathering in my home for Bible study,
                 fellowship, and a shared desire to grow in God&rsquo;s Word. Over time, this
@@ -58,8 +57,23 @@ export default function AboutPage() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={0.1} className="mt-12">
-            <PhotoCarousel photos={site.groupPhotos} altPrefix="Women of Shine Ministries" />
+          <Reveal delay={0.1}>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {site.groupPhotos.map((src, i) => (
+                <div
+                  key={src}
+                  className="relative aspect-square overflow-hidden rounded-xl shadow-sm"
+                >
+                  <Image
+                    src={src}
+                    alt={`Women of Shine Ministries ${i + 1}`}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 20vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>

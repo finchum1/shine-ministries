@@ -1,6 +1,8 @@
 // Central place for site-wide content that Terrence will want to edit directly.
 // Anything here is placeholder copy standing in for real ministry content.
 
+import type { EventRow } from "@/lib/supabase";
+
 export const site = {
   name: "Shine Ministries",
   tagline: "Brighter and Brighter.",
@@ -128,7 +130,7 @@ export const servingOpportunities = [
 // Real fall 2026 events. Also serves as fallback content shown whenever
 // Supabase isn't configured (which is the case right now — no events table
 // is wired up yet, so these are what actually renders on the live site).
-export const fallbackEvents = [
+export const fallbackEvents: EventRow[] = [
   {
     id: "fallback-1",
     title: "Shine Fall Kickoff Event",
@@ -138,7 +140,7 @@ export const fallbackEvents = [
     event_time: "6:30 – 8:30 PM",
     location: "The McGranahan Barn",
     rsvp_url: "https://evite.me/8zBGqXASyZ",
-    is_featured: true,
+    highlight: "lavender",
   },
   {
     id: "fallback-2",
@@ -171,7 +173,7 @@ export const fallbackEvents = [
     event_date: "2026-10-31",
     event_time: null,
     location: null,
-    is_featured: true,
+    highlight: "sage",
     date_tbd: true,
   },
   {
@@ -181,7 +183,7 @@ export const fallbackEvents = [
     event_date: "2026-10-31",
     event_time: null,
     location: null,
-    is_featured: true,
+    highlight: "sage",
     date_tbd: true,
   },
   {
@@ -207,7 +209,7 @@ export const fallbackEvents = [
     event_date: "2026-11-30",
     event_time: null,
     location: null,
-    is_featured: true,
+    highlight: "sage",
     date_tbd: true,
   },
   {

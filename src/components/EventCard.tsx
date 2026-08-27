@@ -2,18 +2,31 @@ import { RevealItem } from "@/components/motion/Reveal";
 import { EventRow } from "@/lib/supabase";
 import { formatEventDate } from "@/lib/events";
 
+// Two distinct highlight treatments — lavender for the marquee kickoff
+// event, sage for the lighter social/prayer-walk gatherings — both dark
+// enough for the same cream text-color set below.
+const highlightStyles = {
+  lavender: {
+    card: "bg-lavender-dark hover:shadow-lavender-dark/30",
+    rsvp: "bg-white text-lavender-dark hover:bg-cream",
+  },
+  sage: {
+    card: "bg-sage hover:shadow-sage/30",
+    rsvp: "bg-white text-sage-dark hover:bg-cream",
+  },
+} as const;
+
 export function EventCard({ event }: { event: EventRow }) {
   const { day, month, weekday } = formatEventDate(event.event_date);
-  const featured = Boolean(event.is_featured);
+  const highlight = event.highlight ? highlightStyles[event.highlight] : null;
+  const featured = Boolean(highlight);
   const dateTbd = Boolean(event.date_tbd);
 
   return (
     <RevealItem className="group h-full">
       <div
         className={`flex h-full flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg ${
-          featured
-            ? "bg-lavender-dark ring-1 ring-white/10 hover:shadow-lavender-dark/30"
-            : "border border-clay-900/8 bg-white hover:shadow-terracotta/10"
+          highlight ? `${highlight.card} ring-1 ring-white/10` : "border border-clay-900/8 bg-white hover:shadow-terracotta/10"
         }`}
       >
         <div className="flex items-start gap-4 p-6 pb-4">
@@ -55,7 +68,9 @@ export function EventCard({ event }: { event: EventRow }) {
               href={event.rsvp_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-sage px-5 py-2 text-sm font-medium text-cream shadow-sm shadow-sage/20 transition-colors hover:bg-sage-dark"
+              className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium shadow-sm transition-colors ${
+                highlight ? highlight.rsvp : "bg-sage text-cream shadow-sage/20 hover:bg-sage-dark"
+              }`}
             >
               RSVP
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">

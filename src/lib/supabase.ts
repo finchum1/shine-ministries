@@ -27,7 +27,9 @@ export type EventRow = {
   location: string | null;
   image_url?: string | null;
   rsvp_url?: string | null;
-  is_featured?: boolean;
+  // Highlighted card treatment — lavender for the marquee kickoff event,
+  // sage for the lighter social/prayer-walk gatherings. Absent = plain card.
+  highlight?: "lavender" | "sage";
   // When true, event_date is only an internal sort anchor (e.g. last day of
   // the month) — the exact date hasn't been set yet, so the card shows
   // "TBD" instead of a specific day/weekday.
