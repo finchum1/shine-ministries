@@ -45,3 +45,11 @@ export type BibleStudyRow = {
   location: string | null;
   leader_name: string | null;
 };
+
+export type PhotoRow = {
+  id: string;
+  category: "group" | "founder";
+  url: string;
+  alt_text: string | null;
+  sort_order: number;
+};

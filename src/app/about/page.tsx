@@ -5,6 +5,7 @@ import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { BookMeCTA } from "@/components/about/BookMeCTA";
 import { site, founder } from "@/lib/site";
+import { getGroupPhotos, getFounderPhoto } from "@/lib/photos";
 
 // "Our Values" section is hidden for now — see the commented-out section
 // below for how to bring it back.
@@ -16,7 +17,12 @@ export const metadata: Metadata = {
   description: "Learn about Shine Ministries' story, mission, and founder.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [{ photos: groupPhotos }, { photo: founderPhoto }] = await Promise.all([
+    getGroupPhotos(),
+    getFounderPhoto(),
+  ]);
+
   return (
     <>
       <PageHero
@@ -59,7 +65,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {site.groupPhotos.map((src, i) => (
+              {groupPhotos.map((src, i) => (
                 <div
                   key={src}
                   className="relative aspect-square overflow-hidden rounded-xl shadow-sm"
@@ -83,7 +89,7 @@ export default function AboutPage() {
           <Reveal>
             <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl shadow-inner lg:max-w-none">
               <Image
-                src={founder.photo}
+                src={founderPhoto}
                 alt={founder.name}
                 fill
                 sizes="(min-width: 1024px) 40vw, 384px"
