@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "jejbcxeauqzmfpamvawy.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.shineministriesok.com",
+        pathname: "/brand/**",
+      },
     ],
   },
 };
