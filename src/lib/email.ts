@@ -41,10 +41,7 @@ export async function sendContactNotification(fields: {
   const topicLabel = topicLabels[fields.topic] ?? fields.topic;
 
   const { error } = await resend.emails.send({
-    // Resend's shared testing sender — works with no domain verification.
-    // Swap for a shineministriesok.com address once that domain is
-    // verified in the Resend dashboard.
-    from: "Shine Ministries Website <onboarding@resend.dev>",
+    from: "Shine Ministries Website <hello@shineministriesok.com>",
     to: CONTACT_RECIPIENT,
     replyTo: fields.email,
     subject: `${topicLabel} — ${fields.full_name}`,
