@@ -1,6 +1,7 @@
 "use server";
 
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase";
+import { sendContactNotification } from "@/lib/email";
 
 export type ActionResult = { ok: boolean; message: string };
 
@@ -65,26 +66,37 @@ export async function submitContactForm(
     return { ok: false, message: "Please fill in your name, email, and message." };
   }
 
-  if (!isSupabaseConfigured) {
-    return {
-      ok: false,
-      message:
-        "This form isn't connected yet — please reach out to us directly in the meantime.",
-    };
-  }
+  const resolvedTopic = topic || "general";
 
-  const supabase = getSupabaseClient();
-  const { error } = await supabase!.from("contact_submissions").insert({
+  const emailResult = await sendContactNotification({
     full_name,
     email,
-    phone: phone || null,
-    topic: topic || "general",
+    phone: phone || undefined,
+    topic: resolvedTopic,
     message,
   });
 
-  if (error) {
-    console.error("contact_submissions insert error", error);
-    return { ok: false, message: "Something went wrong. Please try again in a moment." };
+  // Best-effort record-keeping — Supabase isn't wired up yet, so this is a
+  // no-op today, but keeps working the moment it is without code changes.
+  if (isSupabaseConfigured) {
+    const supabase = getSupabaseClient();
+    const { error } = await supabase!.from("contact_submissions").insert({
+      full_name,
+      email,
+      phone: phone || null,
+      topic: resolvedTopic,
+      message,
+    });
+    if (error) console.error("contact_submissions insert error", error);
+  }
+
+  if (!emailResult.ok) {
+    console.error("contact email send error", emailResult.error);
+    return {
+      ok: false,
+      message:
+        "Something went wrong sending your message. Please email us directly at shineministriesoklahoma@gmail.com in the meantime.",
+    };
   }
 
   return { ok: true, message: `Thank you, ${full_name.split(" ")[0]}! We've received your message.` };
