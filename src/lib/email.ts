@@ -22,6 +22,7 @@ const CONTACT_RECIPIENT = "brookefinchum@gmail.com";
 const topicLabels: Record<string, string> = {
   general: "General question",
   prayer_request: "Prayer request",
+  join_small_group: "Join a small group",
   counseling: "Book Counseling Session",
   speaking: "Book Speaking Engagement",
 };

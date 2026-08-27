@@ -18,6 +18,7 @@ const topicOptionsByMode = {
   general: [
     { value: "general", label: "General question" },
     { value: "prayer_request", label: "Prayer request" },
+    { value: "join_small_group", label: "Join a small group" },
   ],
   booking: [
     { value: "counseling", label: "Book Counseling Session" },
