@@ -1,7 +1,7 @@
 "use server";
 
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase";
-import { sendContactNotification } from "@/lib/email";
+import { sendContactNotification, sendNewsletterSignupNotification } from "@/lib/email";
 
 export type ActionResult = { ok: boolean; message: string };
 
@@ -129,6 +129,13 @@ export async function submitNewsletterSignup(
     }
     console.error("newsletter_signups insert error", error);
     return { ok: false, message: "Something went wrong. Please try again in a moment." };
+  }
+
+  // Best-effort heads-up — a new subscriber is already saved above
+  // regardless of whether this notification succeeds.
+  const notifyResult = await sendNewsletterSignupNotification(email);
+  if (!notifyResult.ok) {
+    console.error("newsletter signup notification error", notifyResult.error);
   }
 
   return { ok: true, message: "You're subscribed! Thanks for staying connected." };

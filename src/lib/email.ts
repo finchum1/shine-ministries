@@ -62,3 +62,27 @@ export async function sendContactNotification(fields: {
   }
   return { ok: true };
 }
+
+// Where new-subscriber notifications go. The subscriber list itself lives in
+// Supabase's newsletter_signups table (that insert stays the source of
+// truth) — this is just a heads-up so a new signup doesn't go unnoticed.
+const NEWSLETTER_RECIPIENT = "brookefinchum@gmail.com";
+
+export async function sendNewsletterSignupNotification(email: string): Promise<{ ok: boolean; error?: string }> {
+  const resend = getClient();
+  if (!resend) {
+    return { ok: false, error: "RESEND_API_KEY is not set." };
+  }
+
+  const { error } = await resend.emails.send({
+    from: "Shine Ministries Website <hello@shineministriesok.com>",
+    to: NEWSLETTER_RECIPIENT,
+    subject: "New newsletter subscriber",
+    text: `${email} just subscribed to the Shine Ministries newsletter.`,
+  });
+
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+  return { ok: true };
+}
