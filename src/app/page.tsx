@@ -18,6 +18,11 @@ import { SunMark } from "@/components/ui/SunMark";
 //   sun: "☀️",
 // };
 
+// Revalidate periodically so edits made in the office app show up here
+// without needing a full redeploy (this page has no dynamic APIs, so
+// Next would otherwise statically render it once at build time).
+export const revalidate = 60;
+
 export default async function Home() {
   const { events } = await getUpcomingEvents(3);
 

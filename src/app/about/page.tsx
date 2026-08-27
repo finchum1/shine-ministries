@@ -12,6 +12,11 @@ import { getGroupPhotos, getFounderPhoto } from "@/lib/photos";
 // import { SectionHeading } from "@/components/ui/SectionHeading";
 // import { values } from "@/lib/site";
 
+// Revalidate periodically so edits made in the office app show up here
+// without needing a full redeploy (this page has no dynamic APIs, so
+// Next would otherwise statically render it once at build time).
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: `About — ${site.name}`,
   description: "Learn about Shine Ministries' story, mission, and founder.",

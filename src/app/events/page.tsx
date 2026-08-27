@@ -5,6 +5,11 @@ import { EventCard } from "@/components/EventCard";
 import { getUpcomingEvents } from "@/lib/events";
 import { site } from "@/lib/site";
 
+// Revalidate periodically so edits made in the office app show up here
+// without needing a full redeploy (this page has no dynamic APIs, so
+// Next would otherwise statically render it once at build time).
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: `Events — ${site.name}`,
   description: "Upcoming Shine Ministries events, retreats, and gatherings.",
