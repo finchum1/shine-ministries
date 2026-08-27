@@ -5,6 +5,7 @@ import { formatEventDate } from "@/lib/events";
 export function EventCard({ event }: { event: EventRow }) {
   const { day, month, weekday } = formatEventDate(event.event_date);
   const featured = Boolean(event.is_featured);
+  const dateTbd = Boolean(event.date_tbd);
 
   return (
     <RevealItem className="group h-full">
@@ -22,15 +23,17 @@ export function EventCard({ event }: { event: EventRow }) {
             }`}
           >
             <span className="text-xs font-semibold uppercase tracking-wide">{month}</span>
-            <span className="font-display text-2xl leading-none">{day}</span>
+            <span className={dateTbd ? "text-xs font-semibold leading-none" : "font-display text-2xl leading-none"}>
+              {dateTbd ? "TBD" : day}
+            </span>
           </div>
           <div>
             <h3 className={`font-display text-xl ${featured ? "text-cream" : "text-clay-900"}`}>
               {event.title}
             </h3>
-            {(event.event_time || event.location) && (
+            {(dateTbd || event.event_time || event.location) && (
               <p className={`mt-1 text-sm ${featured ? "text-cream/70" : "text-clay-500"}`}>
-                {weekday}
+                {dateTbd ? "Date TBD" : weekday}
                 {event.event_time ? `, ${event.event_time}` : ""}
                 {event.location ? ` · ${event.location}` : ""}
               </p>

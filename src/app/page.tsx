@@ -1,18 +1,22 @@
 import { HomeHero } from "@/components/home/HomeHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { Reveal, RevealGroup } from "@/components/motion/Reveal";
 import { EventCard } from "@/components/EventCard";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
-import { site, values } from "@/lib/site";
+import { site } from "@/lib/site";
 import { getUpcomingEvents } from "@/lib/events";
 import { SunMark } from "@/components/ui/SunMark";
 
-const icons: Record<string, string> = {
-  hands: "🤝",
-  leaf: "🌿",
-  sun: "☀️",
-};
+// Values section (icons/data) is hidden for now — see the commented-out
+// "Values" section below for how to bring it back.
+// import { RevealItem } from "@/components/motion/Reveal";
+// import { values } from "@/lib/site";
+// const icons: Record<string, string> = {
+//   hands: "🤝",
+//   leaf: "🌿",
+//   sun: "☀️",
+// };
 
 export default async function Home() {
   const { events } = await getUpcomingEvents(3);
@@ -55,7 +59,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Values — hidden for now, may come back later.
       <section className="bg-cream py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <SectionHeading
@@ -76,6 +80,7 @@ export default async function Home() {
           </RevealGroup>
         </div>
       </section>
+      */}
 
       {/* Newsletter band */}
       <section className="bg-lavender-dark py-20 sm:py-24">

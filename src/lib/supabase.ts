@@ -28,6 +28,10 @@ export type EventRow = {
   image_url?: string | null;
   rsvp_url?: string | null;
   is_featured?: boolean;
+  // When true, event_date is only an internal sort anchor (e.g. last day of
+  // the month) — the exact date hasn't been set yet, so the card shows
+  // "TBD" instead of a specific day/weekday.
+  date_tbd?: boolean;
 };
 
 export type BibleStudyRow = {

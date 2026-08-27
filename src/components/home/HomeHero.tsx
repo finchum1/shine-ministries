@@ -92,17 +92,15 @@ export function HomeHero() {
       </div>
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-24 pt-10 text-center sm:pt-14">
-        {/* Mission statement, on two fixed lines rather than left to wrap
-            naturally at arbitrary widths. */}
+        {/* Mission statement */}
         <motion.p
           custom={0}
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-6 text-lg font-semibold leading-relaxed tracking-wide text-sage-dark sm:text-xl"
+          className="mb-6 max-w-[15rem] font-display text-lg italic leading-relaxed text-clay-900 sm:max-w-none sm:whitespace-nowrap sm:text-lg md:text-xl lg:text-2xl"
         >
-          <span className="block">Gathering and empowering women</span>
-          <span className="block">to cultivate a healthy soul to shine His glory.</span>
+          Gathering and empowering women to shine His glory!
         </motion.p>
 
         <motion.h1

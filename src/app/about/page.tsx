@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { BookMeCTA } from "@/components/about/BookMeCTA";
 import { PhotoCarousel } from "@/components/about/PhotoCarousel";
-import { site, values, founder } from "@/lib/site";
+import { site, founder } from "@/lib/site";
+
+// "Our Values" section is hidden for now — see the commented-out section
+// below for how to bring it back.
+// import { SectionHeading } from "@/components/ui/SectionHeading";
+// import { values } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `About — ${site.name}`,
@@ -19,7 +23,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Us"
         title="Our story"
-        description="Gathering to know Jesus more deeply, to encourage one another wholeheartedly, and to shine the light of the Gospel to the world around us."
+        description="We are a group of women—young and old—gathering to know Jesus more deeply, to encourage one another wholeheartedly, and to shine the light of the Gospel to the world around us."
       />
 
       <section className="bg-cream py-20 sm:py-24">
@@ -125,6 +129,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Our Values — hidden for now, may come back later.
       <section className="bg-cream py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <SectionHeading
@@ -144,6 +149,7 @@ export default function AboutPage() {
           </RevealGroup>
         </div>
       </section>
+      */}
 
       <section className="bg-lavender-dark py-20 sm:py-24">
         <Reveal className="mx-auto max-w-2xl px-6 text-center">

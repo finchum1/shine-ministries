@@ -8,7 +8,9 @@ export async function getUpcomingEvents(limit?: number): Promise<{ events: Event
   const today = new Date().toISOString().slice(0, 10);
   let query = supabase
     .from("events")
-    .select("id, title, description, event_date, event_time, location, image_url, rsvp_url, is_featured")
+    .select(
+      "id, title, description, event_date, event_time, location, image_url, rsvp_url, is_featured, date_tbd"
+    )
     .eq("is_published", true)
     .gte("event_date", today)
     .order("event_date", { ascending: true });
