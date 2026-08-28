@@ -4,14 +4,22 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "@/components/motion/Reveal";
 import { ReachOutCTA } from "@/components/get-involved/ReachOutCTA";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
-import { servingOpportunities, site } from "@/lib/site";
+import { site } from "@/lib/site";
+import { getServingOpportunities } from "@/lib/settings";
+
+// Revalidate periodically so edits made in the office app show up here
+// without needing a full redeploy (this page has no dynamic APIs, so
+// Next would otherwise statically render it once at build time).
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: `Get Involved — ${site.name}`,
   description: "Ways to serve, volunteer, and connect with Shine Ministries.",
 };
 
-export default function GetInvolvedPage() {
+export default async function GetInvolvedPage() {
+  const servingOpportunities = await getServingOpportunities();
+
   return (
     <>
       <PageHero

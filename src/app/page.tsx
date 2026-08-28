@@ -4,8 +4,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, RevealGroup } from "@/components/motion/Reveal";
 import { EventCard } from "@/components/EventCard";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
-import { site } from "@/lib/site";
 import { getUpcomingEvents } from "@/lib/events";
+import { getVerse } from "@/lib/settings";
 import { SunMark } from "@/components/ui/SunMark";
 
 // Values section (icons/data) is hidden for now — see the commented-out
@@ -24,7 +24,7 @@ import { SunMark } from "@/components/ui/SunMark";
 export const revalidate = 60;
 
 export default async function Home() {
-  const { events } = await getUpcomingEvents(3);
+  const [{ events }, verse] = await Promise.all([getUpcomingEvents(3), getVerse()]);
 
   return (
     <>
@@ -35,10 +35,10 @@ export default async function Home() {
         <Reveal className="mx-auto max-w-3xl px-6 text-center">
           <SunMark className="mx-auto mb-6 h-10 w-10 text-sand-dark" />
           <p className="font-display text-2xl leading-relaxed text-clay-900 sm:text-3xl">
-            {site.verse.text}
+            {verse.text}
           </p>
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
-            {site.verse.reference}
+            {verse.reference}
           </p>
         </Reveal>
       </section>

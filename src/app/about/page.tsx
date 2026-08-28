@@ -4,8 +4,9 @@ import { PageHero } from "@/components/PageHero";
 import { SunMark } from "@/components/ui/SunMark";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { BookMeCTA } from "@/components/about/BookMeCTA";
-import { site, founder } from "@/lib/site";
+import { site } from "@/lib/site";
 import { getGroupPhotos, getFounderPhoto } from "@/lib/photos";
+import { getVerses, getFounderContent, getContactContent } from "@/lib/settings";
 
 // "Our Values" section is hidden for now — see the commented-out section
 // below for how to bring it back.
@@ -23,10 +24,14 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const [{ photos: groupPhotos }, { photo: founderPhoto }] = await Promise.all([
-    getGroupPhotos(),
-    getFounderPhoto(),
-  ]);
+  const [{ photos: groupPhotos }, { photo: founderPhoto }, verses, founder, contact] =
+    await Promise.all([
+      getGroupPhotos(),
+      getFounderPhoto(),
+      getVerses(),
+      getFounderContent(),
+      getContactContent(),
+    ]);
 
   return (
     <>
@@ -138,7 +143,7 @@ export default async function AboutPage() {
             </p>
           </Reveal>
           <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {site.verses.map((v) => (
+            {verses.map((v) => (
               <RevealItem key={v.reference}>
                 <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-lavender-dark/15">
                   <p className="font-display text-xl italic leading-relaxed text-clay-900">
@@ -181,10 +186,10 @@ export default async function AboutPage() {
           <h2 className="font-display text-3xl text-cream sm:text-4xl">New here?</h2>
           <p className="mt-4 text-base leading-relaxed text-cream/70">
             We&rsquo;d love to meet you. Come as you are — no experience with Bible study or church
-            required, just an open heart. {site.ageNote}.
+            required, just an open heart. {contact.ageNote}.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {site.serviceArea.map((city) => (
+            {contact.serviceArea.map((city) => (
               <span
                 key={city}
                 className="rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-cream ring-1 ring-white/20"

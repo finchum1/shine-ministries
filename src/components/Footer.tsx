@@ -7,7 +7,19 @@ import { useContactModal } from "@/components/contact/ContactModalContext";
 import { InstagramIcon, FacebookIcon } from "@/components/icons/SocialIcons";
 import { site } from "@/lib/site";
 
-export function Footer() {
+export function Footer({
+  tagline,
+  email,
+  social,
+  verseText,
+  verseReference,
+}: {
+  tagline: string;
+  email: string;
+  social: { instagram: string; facebook: string };
+  verseText: string;
+  verseReference: string;
+}) {
   const { open: openContactModal } = useContactModal();
 
   return (
@@ -23,7 +35,7 @@ export function Footer() {
               className="h-12 w-auto"
             />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-clay-700">
-              {site.tagline}
+              {tagline}
             </p>
             <ButtonLink href="/donate" className="mt-5 !px-5 !py-2.5">
               Donate
@@ -63,8 +75,8 @@ export function Footer() {
                 </Button>
               </li>
               <li>
-                <a href={`mailto:${site.email}`} className="transition-colors hover:text-terracotta-dark">
-                  {site.email}
+                <a href={`mailto:${email}`} className="transition-colors hover:text-terracotta-dark">
+                  {email}
                 </a>
               </li>
               <li>Serving the OKC metro area</li>
@@ -77,7 +89,7 @@ export function Footer() {
             </p>
             <div className="mt-4 flex gap-3">
               <a
-                href={site.social.instagram}
+                href={social.instagram}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Shine Ministries on Instagram"
@@ -86,7 +98,7 @@ export function Footer() {
                 <InstagramIcon />
               </a>
               <a
-                href={site.social.facebook}
+                href={social.facebook}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Shine Ministries on Facebook"
@@ -100,7 +112,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-clay-900/10 pt-6 text-xs text-clay-500 sm:flex-row">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <p className="italic">{site.verse.text} — {site.verse.reference}</p>
+          <p className="italic">{verseText} — {verseReference}</p>
         </div>
       </div>
     </footer>

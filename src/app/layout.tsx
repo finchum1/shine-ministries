@@ -6,6 +6,12 @@ import { Footer } from "@/components/Footer";
 import { ContactModalProvider } from "@/components/contact/ContactModalContext";
 import { ContactModal } from "@/components/contact/ContactModal";
 import { site } from "@/lib/site";
+import { getContactContent, getFooterContent, getVerse } from "@/lib/settings";
+
+// Revalidate periodically so edits made in the office app show up here
+// without needing a full redeploy (this layout has no dynamic APIs, so
+// Next would otherwise statically render it once at build time).
+export const revalidate = 60;
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -24,14 +30,26 @@ export const metadata: Metadata = {
   description: site.description,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const [contact, footer, verse] = await Promise.all([
+    getContactContent(),
+    getFooterContent(),
+    getVerse(),
+  ]);
+
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-cream text-clay-900 antialiased">
         <ContactModalProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <Footer
+            tagline={footer.tagline}
+            email={contact.email}
+            social={contact.social}
+            verseText={verse.text}
+            verseReference={verse.reference}
+          />
           <ContactModal />
         </ContactModalProvider>
       </body>
