@@ -7,10 +7,11 @@ import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { site } from "@/lib/site";
 import { getServingOpportunities } from "@/lib/settings";
 
-// Revalidate periodically so edits made in the office app show up here
-// without needing a full redeploy (this page has no dynamic APIs, so
-// Next would otherwise statically render it once at build time).
-export const revalidate = 60;
+// Always render fresh so edits made in the office app show up immediately
+// (this page has no dynamic APIs, so Next would otherwise statically render
+// it once at build time). revalidate=60 previously caused a confusing lag
+// where the request right after a save could still show stale content.
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: `Get Involved — ${site.name}`,
