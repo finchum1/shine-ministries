@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ButtonLink, Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { TithelyGiveButton } from "@/components/donate/TithelyGiveButton";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { InstagramIcon, FacebookIcon } from "@/components/icons/SocialIcons";
 import { site } from "@/lib/site";
@@ -37,9 +38,7 @@ export function Footer({
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-clay-700">
               {tagline}
             </p>
-            <ButtonLink href="/donate" className="mt-5 !px-5 !py-2.5">
-              Donate
-            </ButtonLink>
+            <TithelyGiveButton className="mt-5 !px-5 !py-2.5" />
           </div>
 
           <div>

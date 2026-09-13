@@ -5,7 +5,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button, ButtonLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { TithelyGiveButton } from "@/components/donate/TithelyGiveButton";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
 
@@ -85,9 +86,7 @@ export function Navbar() {
           <Button variant="ghost" onClick={() => openContactModal()} className="!px-5 !py-2.5">
             Contact
           </Button>
-          <ButtonLink href="/donate" className="!px-5 !py-2.5">
-            Donate
-          </ButtonLink>
+          <TithelyGiveButton className="!px-5 !py-2.5" />
         </div>
       </nav>
 
@@ -163,9 +162,7 @@ export function Navbar() {
                 <Button variant="ghost" onClick={() => openContactModal()} className="w-full">
                   Contact
                 </Button>
-                <ButtonLink href="/donate" fullWidth>
-                  Donate
-                </ButtonLink>
+                <TithelyGiveButton className="w-full" />
               </motion.div>
             </div>
           </motion.div>
