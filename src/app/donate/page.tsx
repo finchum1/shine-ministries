@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { TithelyGiveButton } from "@/components/donate/TithelyGiveButton";
-import { DonateCTA } from "@/components/donate/DonateCTA";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -27,9 +26,8 @@ export default function DonatePage() {
               Every gift helps us gather, grow, and serve women across the OKC metro. It only
               takes a minute, and stays right here on our site.
             </p>
-            <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="mt-8 flex flex-col items-center">
               <TithelyGiveButton />
-              <DonateCTA />
             </div>
           </div>
         </Reveal>
