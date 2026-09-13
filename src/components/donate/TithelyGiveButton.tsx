@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/Button";
 // exactly what their own auto-binder does internally (open({ form: <id> })),
 // just triggered from our own click handler instead of theirs.
 //
-// Rendered directly in the nav and footer (not just the /donate page) so
-// "Give" goes straight to Tithe.ly in one click, with no page in between.
+// Rendered directly in the nav and footer so "Give" goes straight to
+// Tithe.ly in one click, with no page in between.
 const TITHELY_FORM_ID = "5bea42c0-50c1-4b64-b031-7e527661a3b5";
 
 declare global {
