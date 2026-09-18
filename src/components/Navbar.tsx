@@ -61,8 +61,8 @@ export function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-lavender/30 backdrop-blur-md shadow-[0_1px_0_rgba(69,58,47,0.08)]"
-          : "bg-lavender/15 backdrop-blur-sm"
+          ? "bg-terracotta/30 backdrop-blur-md shadow-[0_1px_0_rgba(69,58,47,0.08)]"
+          : "bg-terracotta/15 backdrop-blur-sm"
       }`}
     >
       {/* Desktop: nav links left / logo centered & larger / actions right */}

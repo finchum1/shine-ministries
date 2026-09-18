@@ -89,7 +89,7 @@ export default async function Home() {
       */}
 
       {/* Newsletter band */}
-      <section className="bg-lavender-dark py-20 sm:py-24">
+      <section className="bg-terracotta-dark py-20 sm:py-24">
         <Reveal className="mx-auto max-w-2xl px-6 text-center">
           <h2 className="font-display text-3xl text-cream sm:text-4xl">Light in your inbox</h2>
           <p className="mt-4 text-base leading-relaxed text-cream/70">

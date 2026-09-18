@@ -135,22 +135,22 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-lavender/12 py-20 sm:py-24">
+      <section className="bg-terracotta/12 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <SunMark className="mx-auto mb-5 h-8 w-8 text-lavender-dark" />
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-lavender-dark">
+            <SunMark className="mx-auto mb-5 h-8 w-8 text-terracotta-dark" />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
               Words We Hold Onto
             </p>
           </Reveal>
           <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {verses.map((v) => (
               <RevealItem key={v.reference}>
-                <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-lavender-dark/15">
+                <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-terracotta-dark/15">
                   <p className="font-display text-xl italic leading-relaxed text-clay-900">
                     {v.text}
                   </p>
-                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-lavender-dark">
+                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
                     {v.reference}
                   </p>
                 </div>
@@ -182,7 +182,7 @@ export default async function AboutPage() {
       </section>
       */}
 
-      <section className="bg-lavender-dark py-20 sm:py-24">
+      <section className="bg-terracotta-dark py-20 sm:py-24">
         <Reveal className="mx-auto max-w-2xl px-6 text-center">
           <h2 className="font-display text-3xl text-cream sm:text-4xl">New here?</h2>
           <p className="mt-4 text-base leading-relaxed text-cream/70">

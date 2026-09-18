@@ -2,13 +2,15 @@ import { RevealItem } from "@/components/motion/Reveal";
 import { EventRow } from "@/lib/supabase";
 import { formatEventDate } from "@/lib/events";
 
-// Two distinct highlight treatments — lavender for the marquee kickoff
+// Two distinct highlight treatments — terracotta for the marquee kickoff
 // event, sage for the lighter social/prayer-walk gatherings — both dark
-// enough for the same cream text-color set below.
+// enough for the same cream text-color set below. The "lavender" key name
+// is the stored event.highlight value (set in the office app) and stays
+// as-is even though its color is now terracotta, not lavender.
 const highlightStyles = {
   lavender: {
-    card: "bg-lavender-dark hover:shadow-lavender-dark/30",
-    rsvp: "bg-white text-lavender-dark hover:bg-cream",
+    card: "bg-terracotta-dark hover:shadow-terracotta-dark/30",
+    rsvp: "bg-white text-terracotta-dark hover:bg-cream",
   },
   sage: {
     card: "bg-sage hover:shadow-sage/30",
