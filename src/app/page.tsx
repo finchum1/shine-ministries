@@ -89,14 +89,14 @@ export default async function Home() {
       */}
 
       {/* Newsletter band */}
-      <section className="bg-terracotta-dark py-20 sm:py-24">
+      <section className="bg-terracotta py-20 sm:py-24">
         <Reveal className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="font-display text-3xl text-cream sm:text-4xl">Light in your inbox</h2>
-          <p className="mt-4 text-base leading-relaxed text-cream/70">
+          <h2 className="font-display text-3xl text-clay-900 sm:text-4xl">Light in your inbox</h2>
+          <p className="mt-4 text-base leading-relaxed text-clay-900/70">
             Get occasional blogs, events, and news from Shine Ministries — straight to your inbox.
           </p>
           <div className="mt-8">
-            <NewsletterForm dark />
+            <NewsletterForm />
           </div>
         </Reveal>
       </section>

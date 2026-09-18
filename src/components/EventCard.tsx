@@ -3,25 +3,33 @@ import { EventRow } from "@/lib/supabase";
 import { formatEventDate } from "@/lib/events";
 
 // Two distinct highlight treatments — terracotta for the marquee kickoff
-// event, sage for the lighter social/prayer-walk gatherings — both dark
-// enough for the same cream text-color set below. The "lavender" key name
-// is the stored event.highlight value (set in the office app) and stays
-// as-is even though its color is now terracotta, not lavender.
+// event, sage for the lighter social/prayer-walk gatherings. Terracotta's
+// card is the light base tone (not terracotta-dark), so it gets its own
+// dark-on-light text set instead of sage's light-on-dark one. The
+// "lavender" key name is the stored event.highlight value (set in the
+// office app) and stays as-is even though its color is now terracotta.
 const highlightStyles = {
   lavender: {
-    card: "bg-terracotta-dark hover:shadow-terracotta-dark/30",
+    card: "bg-terracotta hover:shadow-terracotta/30",
     rsvp: "bg-white text-terracotta-dark hover:bg-cream",
+    dateBadge: "bg-white/40 text-clay-900",
+    title: "text-clay-900",
+    meta: "text-clay-900/70",
+    description: "text-clay-900/80",
   },
   sage: {
     card: "bg-sage hover:shadow-sage/30",
     rsvp: "bg-white text-sage-dark hover:bg-cream",
+    dateBadge: "bg-white/15 text-cream",
+    title: "text-cream",
+    meta: "text-cream/70",
+    description: "text-cream/85",
   },
 } as const;
 
 export function EventCard({ event }: { event: EventRow }) {
   const { day, month, weekday } = formatEventDate(event.event_date);
   const highlight = event.highlight ? highlightStyles[event.highlight] : null;
-  const featured = Boolean(highlight);
   const dateTbd = Boolean(event.date_tbd);
 
   return (
@@ -34,7 +42,7 @@ export function EventCard({ event }: { event: EventRow }) {
         <div className="flex items-start gap-4 p-6 pb-4">
           <div
             className={`flex w-16 shrink-0 flex-col items-center rounded-xl py-2 ${
-              featured ? "bg-white/15 text-cream" : "bg-honey/25 text-terracotta-dark"
+              highlight ? highlight.dateBadge : "bg-honey/25 text-terracotta-dark"
             }`}
           >
             <span className="text-xs font-semibold uppercase tracking-wide">{month}</span>
@@ -43,11 +51,11 @@ export function EventCard({ event }: { event: EventRow }) {
             </span>
           </div>
           <div>
-            <h3 className={`font-display text-xl ${featured ? "text-cream" : "text-clay-900"}`}>
+            <h3 className={`font-display text-xl ${highlight ? highlight.title : "text-clay-900"}`}>
               {event.title}
             </h3>
             {(dateTbd || event.event_time || event.location) && (
-              <p className={`mt-1 text-sm ${featured ? "text-cream/70" : "text-clay-500"}`}>
+              <p className={`mt-1 text-sm ${highlight ? highlight.meta : "text-clay-500"}`}>
                 {dateTbd ? "Date TBD" : weekday}
                 {event.event_time ? `, ${event.event_time}` : ""}
                 {event.location ? ` · ${event.location}` : ""}
@@ -58,7 +66,7 @@ export function EventCard({ event }: { event: EventRow }) {
         {event.description && (
           <p
             className={`px-6 text-sm leading-relaxed ${event.rsvp_url ? "pb-4" : "pb-6"} ${
-              featured ? "text-cream/85" : "text-clay-700"
+              highlight ? highlight.description : "text-clay-700"
             }`}
           >
             {event.description}

@@ -182,10 +182,10 @@ export default async function AboutPage() {
       </section>
       */}
 
-      <section className="bg-terracotta-dark py-20 sm:py-24">
+      <section className="bg-terracotta py-20 sm:py-24">
         <Reveal className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="font-display text-3xl text-cream sm:text-4xl">New here?</h2>
-          <p className="mt-4 text-base leading-relaxed text-cream/70">
+          <h2 className="font-display text-3xl text-clay-900 sm:text-4xl">New here?</h2>
+          <p className="mt-4 text-base leading-relaxed text-clay-900/70">
             We&rsquo;d love to meet you. Come as you are — no experience with Bible study or church
             required, just an open heart. {contact.ageNote}.
           </p>
@@ -193,7 +193,7 @@ export default async function AboutPage() {
             {contact.serviceArea.map((city) => (
               <span
                 key={city}
-                className="rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-cream ring-1 ring-white/20"
+                className="rounded-full bg-white/40 px-4 py-1.5 text-xs font-medium text-clay-900 ring-1 ring-clay-900/15"
               >
                 {city}, OK
               </span>
