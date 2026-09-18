@@ -111,11 +111,11 @@ export function HomeHero() {
           className="font-display text-5xl leading-[1.05] sm:text-6xl"
         >
           <motion.span
-            className="block text-lavender"
+            className="block text-terracotta"
             animate={
               shouldReduceMotion
-                ? { textShadow: glowShadow(0.8, "168, 155, 196") }
-                : brightenKeyframes("168, 155, 196", 0.85)
+                ? { textShadow: glowShadow(0.8, "233, 166, 124") }
+                : brightenKeyframes("233, 166, 124", 0.85)
             }
             transition={
               shouldReduceMotion
@@ -129,8 +129,8 @@ export function HomeHero() {
             className="block italic text-gold"
             animate={
               shouldReduceMotion
-                ? { textShadow: glowShadow(1.15, "255, 224, 102") }
-                : brightenKeyframes("255, 224, 102", 1.15)
+                ? { textShadow: glowShadow(1.15, "252, 214, 108") }
+                : brightenKeyframes("252, 214, 108", 1.15)
             }
             transition={
               shouldReduceMotion
