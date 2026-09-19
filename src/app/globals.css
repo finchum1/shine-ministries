@@ -23,9 +23,12 @@
   --color-sand: #ead4b5;
   --color-sand-dark: #d9bb8f;
 
-  /* Sunset Peach — primary accent (CTAs, links, active states) */
-  --color-terracotta: #e9a67c;
-  --color-terracotta-light: #f5d4c0;
+  /* Sunset Peach — primary accent (CTAs, links, active states). Lightened
+     2026-09-19 from the original swatch (#e9a67c) to this exact hex at
+     Terrence's request -- the big solid-color bands (newsletter, "New
+     here?") were reading too saturated/orange. */
+  --color-terracotta: #f5d4c0;
+  --color-terracotta-light: #fbeae1;
 
   /* Palm Leaf — secondary accent (values, calm sections) */
   --color-sage: #8fa98b;
