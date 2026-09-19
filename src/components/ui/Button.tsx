@@ -8,10 +8,10 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-sage text-cream hover:bg-sage-dark shadow-sm shadow-sage/20",
+    "bg-clay-900 text-cream hover:bg-clay-900-dark shadow-sm shadow-clay-900/20",
   secondary:
-    "bg-transparent border border-clay-900/20 text-clay-900 hover:border-sage hover:text-sage-dark",
-  ghost: "bg-sage/10 text-sage-dark hover:bg-sage/20",
+    "bg-transparent border border-clay-900/20 text-clay-900 hover:border-clay-900 hover:text-clay-900-dark",
+  ghost: "bg-clay-900/10 text-clay-900-dark hover:bg-clay-900/20",
 };
 
 type ButtonBaseProps = {

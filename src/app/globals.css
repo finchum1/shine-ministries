@@ -61,8 +61,12 @@
   --color-lavender: #e0af70;
   --color-lavender-dark: #a67b44;
 
-  /* Ocean Depth — text neutrals */
+  /* Ocean Depth — text neutrals. clay-900-dark is a button-only hover tier
+     (buttons switched from Palm Leaf/sage to Ocean Depth at Terrence's
+     request) -- 900/700/500 only ever lighten from the base, so there was
+     no existing darker tier to reuse for a hover state. */
   --color-clay-900: #5d695d;
+  --color-clay-900-dark: #464f46;
   --color-clay-700: #778477;
   --color-clay-500: #929b92;
   --color-white: #ffffff;
@@ -96,6 +100,7 @@
   --color-lavender: var(--color-lavender);
   --color-lavender-dark: var(--color-lavender-dark);
   --color-clay-900: var(--color-clay-900);
+  --color-clay-900-dark: var(--color-clay-900-dark);
   --color-clay-700: var(--color-clay-700);
   --color-clay-500: var(--color-clay-500);
 

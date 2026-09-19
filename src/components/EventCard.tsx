@@ -79,7 +79,7 @@ export function EventCard({ event }: { event: EventRow }) {
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium shadow-sm transition-colors ${
-                highlight ? highlight.rsvp : "bg-sage text-cream shadow-sage/20 hover:bg-sage-dark"
+                highlight ? highlight.rsvp : "bg-clay-900 text-cream shadow-clay-900/20 hover:bg-clay-900-dark"
               }`}
             >
               RSVP
