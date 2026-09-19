@@ -98,7 +98,7 @@ export function HomeHero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-6 max-w-[15rem] font-display text-xl italic leading-relaxed text-clay-900 sm:max-w-none sm:whitespace-nowrap sm:text-xl md:text-2xl lg:text-3xl"
+          className="mb-6 max-w-[15rem] font-display text-2xl italic leading-relaxed text-clay-900 sm:max-w-none sm:whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl"
         >
           Gathering and empowering women to shine His glory!
         </motion.p>
@@ -108,10 +108,10 @@ export function HomeHero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="font-display text-5xl leading-[1.05] sm:text-6xl"
+          className="font-display text-3xl leading-tight sm:text-4xl"
         >
           <motion.span
-            className="block text-honey"
+            className="text-honey"
             animate={
               shouldReduceMotion
                 ? { textShadow: glowShadow(0.8, "230, 193, 90") }
@@ -123,10 +123,10 @@ export function HomeHero() {
                 : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1, times: [0, 0.25, 0.6, 0.9, 1] }
             }
           >
-            Brighter and
+            Brighter and{" "}
           </motion.span>
           <motion.span
-            className="block italic text-honey"
+            className="italic text-honey"
             animate={
               shouldReduceMotion
                 ? { textShadow: glowShadow(1.15, "230, 193, 90") }
