@@ -1,19 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  /* "Summer Escape" palette (2026-09-18 rebrand) — Sunset Peach / Sand Dune /
-     Citrus Zest / Sea Breeze / Palm Leaf / Ocean Depth. Every family below
-     is a derived tier of one of those six exact brand hex values (light/dark
-     tiers computed with the same proportional relationships the previous
-     palette's tiers had, not picked by eye), so the whole site traces back
-     to the six approved swatches. Two families that had no analog in the new
-     six (blush's rose, lavender's purple) are now derived from the nearest
-     kin (Sunset Peach and Sea Breeze respectively) rather than keeping an
-     off-palette hue. */
+  /* "Honey Jar" palette (2026-09-19 rebrand, round 2) — replaces every
+     accent/text color from the "Summer Escape" round with the new picture's
+     5 exact hex codes. Light/dark tiers are computed from each anchor color
+     using the same proportional lighten/darken relationships used every
+     round so far, not picked by eye. The background family (cream/
+     cream-soft/linen/sand) is the one exception, left as-is from the
+     previous round -- the new picture has no swatch that reads as a neutral
+     background, and the closest candidate (Sunset Peach's own new color) is
+     already spoken for as the primary accent. Two families that still have
+     no analog of their own (blush's rose, mist/lavender's cool accent) stay
+     derived from the nearest kin (Sunset Peach and the honey/gold family's
+     sibling slot respectively), same approach as last round. */
   --color-cream: #faf7f4;
   --color-cream-soft: #f4eee8;
 
-  /* Sand Dune — warm neutral wash, used for cards/section backgrounds */
+  /* Unchanged from the "Summer Escape" round -- warm neutral wash, used for
+     cards/section backgrounds */
   --color-linen: #ead4b5;
   --color-linen-dark: #d9bb8f;
 
@@ -21,44 +25,46 @@
   --color-sand: #ead4b5;
   --color-sand-dark: #d9bb8f;
 
-  /* Sunset Peach — primary accent (CTAs, links, active states) */
-  --color-terracotta: #e9a67c;
-  --color-terracotta-dark: #e37a39;
-  --color-terracotta-light: #f5d4c0;
+  /* Sunset Peach — primary accent (CTAs, links, active states). Exact hex
+     per Terrence's explicit request; -dark below is what most on-screen
+     text actually renders in, since the base tone is very pale. */
+  --color-terracotta: #ebceae;
+  --color-terracotta-dark: #dda567;
+  --color-terracotta-light: #f6e8d8;
 
   /* Palm Leaf — secondary accent (values, calm sections) */
-  --color-sage: #8fa98b;
-  --color-sage-dark: #688564;
-  --color-sage-light: #c3d4c0;
+  --color-sage: #aaa06d;
+  --color-sage-dark: #847c4e;
+  --color-sage-light: #d6d0ae;
 
   /* Citrus Zest — warm highlight accent (badges, small pops of gold) */
-  --color-honey: #e6c15a;
-  --color-honey-dark: #c6a036;
-  --color-honey-light: #f5e2ae;
+  --color-honey: #f5b74e;
+  --color-honey-dark: #d89627;
+  --color-honey-light: #fcdda8;
 
   /* Sunset Peach, softened — soft rose accent (community/service-leaning sections) */
-  --color-blush: #dda988;
-  --color-blush-dark: #b77f5c;
-  --color-blush-light: #f0d4c2;
+  --color-blush: #e4ceb5;
+  --color-blush-dark: #c7a57e;
+  --color-blush-light: #f2e8db;
 
   /* Sea Breeze — cool neutral accent, a quiet counterpoint to the warm hues */
-  --color-mist: #a9c6c2;
-  --color-mist-dark: #6f918c;
-  --color-mist-light: #d5e4e2;
+  --color-mist: #e0af70;
+  --color-mist-dark: #a67b44;
+  --color-mist-light: #f3d9b7;
 
   /* Citrus Zest, boosted — the bright "shine" glow, reserved for the hero headline + sunrise */
-  --color-gold: #fbcf54;
-  --color-gold-dark: #dfaf29;
-  --color-gold-bright: #fcd66c;
+  --color-gold: #ffbd4e;
+  --color-gold-dark: #e39c23;
+  --color-gold-bright: #ffc667;
 
   /* Sea Breeze, deepened — muted cool accent, used for the hero's first headline line */
-  --color-lavender: #a9c6c2;
-  --color-lavender-dark: #6f918c;
+  --color-lavender: #e0af70;
+  --color-lavender-dark: #a67b44;
 
   /* Ocean Depth — text neutrals */
-  --color-clay-900: #395b63;
-  --color-clay-700: #527c86;
-  --color-clay-500: #7197a0;
+  --color-clay-900: #5d695d;
+  --color-clay-700: #778477;
+  --color-clay-500: #929b92;
   --color-white: #ffffff;
 }
 
