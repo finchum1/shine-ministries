@@ -28,7 +28,7 @@ export function BibleStudySignupForm({ studies }: { studies: BibleStudyRow[] }) 
             key="success"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-8 rounded-xl bg-sage/10 p-6 text-sage-dark"
+            className="mt-8 rounded-xl bg-sage/10 p-6 text-clay-900"
           >
             {state.message}
           </motion.div>
@@ -58,7 +58,7 @@ export function BibleStudySignupForm({ studies }: { studies: BibleStudyRow[] }) 
               className={`${inputClass} sm:col-span-2 resize-none`}
             />
             {state && !state.ok && (
-              <p className="text-sm text-terracotta-dark sm:col-span-2">{state.message}</p>
+              <p className="text-sm text-clay-900 sm:col-span-2">{state.message}</p>
             )}
             <div className="sm:col-span-2">
               <Button type="submit" disabled={pending} className="w-full sm:w-auto">

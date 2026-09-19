@@ -50,7 +50,7 @@ export function Footer({
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-clay-700 transition-colors hover:text-terracotta-dark"
+                    className="text-sm text-clay-700 transition-colors hover:text-clay-900"
                   >
                     {item.label}
                   </Link>
@@ -74,7 +74,7 @@ export function Footer({
                 </Button>
               </li>
               <li>
-                <a href={`mailto:${email}`} className="transition-colors hover:text-terracotta-dark">
+                <a href={`mailto:${email}`} className="transition-colors hover:text-clay-900">
                   {email}
                 </a>
               </li>
@@ -92,7 +92,7 @@ export function Footer({
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Shine Ministries on Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-clay-700 ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark hover:ring-terracotta/30"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-clay-700 ring-1 ring-clay-900/10 transition-colors hover:text-clay-900 hover:ring-terracotta/30"
               >
                 <InstagramIcon />
               </a>
@@ -101,7 +101,7 @@ export function Footer({
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Shine Ministries on Facebook"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-clay-700 ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark hover:ring-terracotta/30"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-clay-700 ring-1 ring-clay-900/10 transition-colors hover:text-clay-900 hover:ring-terracotta/30"
               >
                 <FacebookIcon />
               </a>

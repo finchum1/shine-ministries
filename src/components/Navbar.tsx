@@ -145,7 +145,7 @@ export function Navbar() {
                     href={item.href}
                     className={`block rounded-lg px-3 py-2.5 text-base font-medium ${
                       pathname === item.href
-                        ? "bg-sage/15 text-sage-dark"
+                        ? "bg-sage/15 text-clay-900"
                         : "text-clay-700"
                     }`}
                   >

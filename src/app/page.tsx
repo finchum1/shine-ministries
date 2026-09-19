@@ -38,7 +38,7 @@ export default async function Home() {
           <p className="font-display text-2xl leading-relaxed text-clay-900 sm:text-3xl">
             {verse.text}
           </p>
-          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
+          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
             {verse.reference}
           </p>
         </Reveal>

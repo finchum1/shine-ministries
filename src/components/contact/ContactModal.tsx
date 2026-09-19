@@ -52,7 +52,7 @@ export function ContactModal() {
             <button
               onClick={close}
               aria-label="Close"
-              className="absolute -top-3 -right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-clay-700 shadow-md ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark"
+              className="absolute -top-3 -right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-clay-700 shadow-md ring-1 ring-clay-900/10 transition-colors hover:text-clay-900"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />

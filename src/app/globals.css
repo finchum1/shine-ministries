@@ -7,7 +7,11 @@
      (light/dark tiers computed with the same proportional relationships
      used every round, not picked by eye). Two families with no analog of
      their own (blush's rose, mist/lavender's cool accent) stay derived from
-     the nearest kin (Sunset Peach and Sea Breeze respectively). */
+     the nearest kin (Sunset Peach and Sea Breeze respectively). Sunset Peach
+     Dark and Palm Leaf Dark were dropped from the palette entirely
+     (2026-09-19) -- every place that used them for text now uses clay-900
+     instead (better contrast anyway: neither dark tier actually met WCAG AA
+     for body text). */
   --color-cream: #faf7f4;
   --color-cream-soft: #f4eee8;
 
@@ -21,12 +25,10 @@
 
   /* Sunset Peach — primary accent (CTAs, links, active states) */
   --color-terracotta: #e9a67c;
-  --color-terracotta-dark: #e37a39;
   --color-terracotta-light: #f5d4c0;
 
   /* Palm Leaf — secondary accent (values, calm sections) */
   --color-sage: #8fa98b;
-  --color-sage-dark: #688564;
   --color-sage-light: #c3d4c0;
 
   /* Citrus Zest — warm highlight accent (badges, small pops of gold) */
@@ -72,10 +74,8 @@
   --color-sand: var(--color-sand);
   --color-sand-dark: var(--color-sand-dark);
   --color-terracotta: var(--color-terracotta);
-  --color-terracotta-dark: var(--color-terracotta-dark);
   --color-terracotta-light: var(--color-terracotta-light);
   --color-sage: var(--color-sage);
-  --color-sage-dark: var(--color-sage-dark);
   --color-sage-light: var(--color-sage-light);
   --color-honey: var(--color-honey);
   --color-honey-dark: var(--color-honey-dark);

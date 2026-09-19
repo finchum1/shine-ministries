@@ -6,7 +6,7 @@ export function BibleStudyCard({ study }: { study: BibleStudyRow }) {
     <RevealItem className="h-full">
       <div className="flex h-full flex-col rounded-2xl border border-clay-900/8 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-sage/10">
         <h3 className="font-display text-xl text-clay-900">{study.title}</h3>
-        <p className="mt-1 text-sm font-medium text-sage-dark">
+        <p className="mt-1 text-sm font-medium text-clay-900">
           {study.day_of_week}
           {study.meeting_time ? ` · ${study.meeting_time}` : ""}
         </p>

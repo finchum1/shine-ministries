@@ -54,7 +54,7 @@ export function PhotoCarousel({ photos, altPrefix }: { photos: string[]; altPref
           <button
             onClick={() => goToManually(page - 1)}
             aria-label="Previous photos"
-            className="absolute -left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-clay-700 shadow-md ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark sm:-left-5"
+            className="absolute -left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-clay-700 shadow-md ring-1 ring-clay-900/10 transition-colors hover:text-clay-900 sm:-left-5"
           >
             <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path
@@ -98,7 +98,7 @@ export function PhotoCarousel({ photos, altPrefix }: { photos: string[]; altPref
           <button
             onClick={() => goToManually(page + 1)}
             aria-label="Next photos"
-            className="absolute -right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-clay-700 shadow-md ring-1 ring-clay-900/10 transition-colors hover:text-terracotta-dark sm:-right-5"
+            className="absolute -right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-clay-700 shadow-md ring-1 ring-clay-900/10 transition-colors hover:text-clay-900 sm:-right-5"
           >
             <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path
@@ -121,7 +121,7 @@ export function PhotoCarousel({ photos, altPrefix }: { photos: string[]; altPref
               onClick={() => goToManually(i)}
               aria-label={`Go to photo set ${i + 1}`}
               className={`h-2 rounded-full transition-all ${
-                i === page ? "w-6 bg-sage-dark" : "w-2 bg-clay-900/20"
+                i === page ? "w-6 bg-clay-900" : "w-2 bg-clay-900/20"
               }`}
             />
           ))}

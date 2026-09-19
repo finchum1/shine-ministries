@@ -45,7 +45,7 @@ export default async function AboutPage() {
       <section className="bg-cream py-20 sm:py-24">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-start">
           <Reveal>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
               How We Began
             </p>
             <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
@@ -109,13 +109,13 @@ export default async function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
               Meet the Founder
             </p>
             <h2 className="font-display text-3xl leading-tight text-clay-900 sm:text-4xl">
               {founder.name}
             </h2>
-            <p className="mt-2 text-sm font-medium text-terracotta-dark">
+            <p className="mt-2 text-sm font-medium text-clay-900">
               {founder.role}, Shine Ministries
             </p>
             <div className="mt-5 space-y-4 text-base leading-relaxed text-clay-700">
@@ -138,19 +138,19 @@ export default async function AboutPage() {
       <section className="bg-terracotta/12 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <SunMark className="mx-auto mb-5 h-8 w-8 text-terracotta-dark" />
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
+            <SunMark className="mx-auto mb-5 h-8 w-8 text-clay-900" />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
               Words We Hold Onto
             </p>
           </Reveal>
           <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {verses.map((v) => (
               <RevealItem key={v.reference}>
-                <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-terracotta-dark/15">
+                <div className="h-full rounded-2xl bg-white/70 p-8 text-center shadow-sm ring-1 ring-terracotta/15">
                   <p className="font-display text-xl italic leading-relaxed text-clay-900">
                     {v.text}
                   </p>
-                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
+                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
                     {v.reference}
                   </p>
                 </div>

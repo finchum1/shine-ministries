@@ -38,8 +38,8 @@ export function NewsletterForm({ dark = false }: { dark?: boolean }) {
               state.ok
                 ? dark
                   ? "text-sage-light"
-                  : "text-sage-dark"
-                : "text-terracotta-dark"
+                  : "text-clay-900"
+                : "text-clay-900"
             }`}
           >
             {state.message}

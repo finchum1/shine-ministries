@@ -4,14 +4,15 @@ import { formatEventDate } from "@/lib/events";
 
 // Two distinct highlight treatments — terracotta for the marquee kickoff
 // event, sage for the lighter social/prayer-walk gatherings. Terracotta's
-// card is the light base tone (not terracotta-dark), so it gets its own
-// dark-on-light text set instead of sage's light-on-dark one. The
-// "lavender" key name is the stored event.highlight value (set in the
-// office app) and stays as-is even though its color is now terracotta.
+// card is the light base tone, so it gets its own dark-on-light text set
+// (clay-900, since terracotta-dark was dropped from the palette) instead of
+// sage's light-on-dark one. The "lavender" key name is the stored
+// event.highlight value (set in the office app) and stays as-is even though
+// its color is now terracotta.
 const highlightStyles = {
   lavender: {
     card: "bg-terracotta hover:shadow-terracotta/30",
-    rsvp: "bg-white text-terracotta-dark hover:bg-cream",
+    rsvp: "bg-white text-clay-900 hover:bg-cream",
     dateBadge: "bg-white/40 text-clay-900",
     title: "text-clay-900",
     meta: "text-clay-900/70",
@@ -19,7 +20,7 @@ const highlightStyles = {
   },
   sage: {
     card: "bg-sage hover:shadow-sage/30",
-    rsvp: "bg-white text-sage-dark hover:bg-cream",
+    rsvp: "bg-white text-clay-900 hover:bg-cream",
     dateBadge: "bg-white/15 text-cream",
     title: "text-cream",
     meta: "text-cream/70",
@@ -42,7 +43,7 @@ export function EventCard({ event }: { event: EventRow }) {
         <div className="flex items-start gap-4 p-6 pb-4">
           <div
             className={`flex w-16 shrink-0 flex-col items-center rounded-xl py-2 ${
-              highlight ? highlight.dateBadge : "bg-honey/25 text-terracotta-dark"
+              highlight ? highlight.dateBadge : "bg-honey/25 text-clay-900"
             }`}
           >
             <span className="text-xs font-semibold uppercase tracking-wide">{month}</span>
