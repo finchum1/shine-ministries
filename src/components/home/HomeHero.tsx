@@ -111,11 +111,11 @@ export function HomeHero() {
           className="font-display text-5xl leading-[1.05] sm:text-6xl"
         >
           <motion.span
-            className="block text-terracotta-dark"
+            className="block text-terracotta"
             animate={
               shouldReduceMotion
-                ? { textShadow: glowShadow(0.8, "221, 165, 103") }
-                : brightenKeyframes("221, 165, 103", 0.85)
+                ? { textShadow: glowShadow(0.8, "233, 166, 124") }
+                : brightenKeyframes("233, 166, 124", 0.85)
             }
             transition={
               shouldReduceMotion
