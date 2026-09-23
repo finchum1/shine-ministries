@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { SunMark } from "@/components/ui/SunMark";
 
-const SLIDESHOW_MS = 5500;
+const SLIDESHOW_MS = 3800;
 
 export type HeroPhoto = { src: string; focusY?: number };
 
@@ -47,7 +47,7 @@ function HeroSlideshow({ photos }: { photos: HeroPhoto[] }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 1.4, ease: "easeInOut" }}
+        transition={{ duration: 1, ease: "easeInOut" }}
         className="absolute inset-0"
       >
         <Image
