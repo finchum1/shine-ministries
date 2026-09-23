@@ -4,13 +4,18 @@ import { motion, HTMLMotionProps } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "secondary-inverted" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
     "bg-clay-900 text-cream hover:bg-clay-900-dark shadow-sm shadow-clay-900/20",
   secondary:
     "bg-transparent border border-clay-900/20 text-clay-900 hover:border-clay-900 hover:text-clay-900-dark",
+  // Same outline treatment as secondary, but in light-on-dark colors for use
+  // over photos or other dark/busy backgrounds where clay-900 text and a
+  // clay-900/20 border would disappear.
+  "secondary-inverted":
+    "bg-white/10 border border-cream/60 text-cream backdrop-blur-sm hover:bg-white/20 hover:border-cream",
   ghost: "bg-clay-900/10 text-clay-900-dark hover:bg-clay-900/20",
 };
 
