@@ -41,7 +41,7 @@ export function HomeHero() {
   const { open: openContactModal } = useContactModal();
 
   return (
-    <section className="relative min-h-[480px] overflow-hidden bg-clay-900 sm:min-h-[600px]">
+    <section className="relative min-h-[720px] overflow-hidden bg-clay-900 sm:min-h-[600px]">
       {/* Group photo as the hero backdrop */}
       <Image
         src="/hero/hero-group-photo.jpg"
@@ -93,7 +93,7 @@ export function HomeHero() {
         </motion.div>
       </div>
 
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center justify-center px-6 py-24 text-center sm:min-h-[600px] sm:py-14">
+      <div className="relative mx-auto flex min-h-[720px] max-w-4xl flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:min-h-[600px] sm:pb-20">
         {/* Mission statement */}
         <motion.p
           custom={0}
