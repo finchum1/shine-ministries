@@ -17,7 +17,7 @@ export function PageHero({
 }) {
   if (backgroundImage) {
     return (
-      <section className="relative min-h-[720px] overflow-hidden bg-clay-900 sm:min-h-[520px]">
+      <section className="relative min-h-[720px] overflow-hidden bg-clay-900 sm:min-h-[760px] lg:min-h-[820px]">
         <Image
           src={backgroundImage}
           alt=""
@@ -25,11 +25,11 @@ export function PageHero({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-bottom"
+          className="object-cover"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-clay-900/85 via-clay-900/55 to-clay-900/35" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-clay-900/85 via-clay-900/40 to-clay-900/10" />
 
-        <div className="relative mx-auto flex min-h-[720px] max-w-3xl flex-col justify-end px-6 pb-16 text-center sm:min-h-[520px] sm:pb-20">
+        <div className="relative mx-auto flex min-h-[720px] max-w-3xl flex-col justify-end px-6 pb-16 text-center sm:min-h-[760px] sm:pb-20 lg:min-h-[820px]">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
