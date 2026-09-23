@@ -40,6 +40,7 @@ export default async function AboutPage() {
         eyebrow="About Us"
         title="Our story"
         description="We are a group of women—young and old—gathering to know Jesus more deeply, to encourage one another wholeheartedly, and to shine the light of the Gospel to the world around us."
+        backgroundImage="/hero/about-hero-photo.jpg"
       />
 
       <section className="bg-cream py-20 sm:py-24">
