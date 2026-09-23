@@ -1,32 +1,102 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { SunMark } from "@/components/ui/SunMark";
+
+const SLIDESHOW_MS = 5500;
+
+export type HeroPhoto = { src: string; focusY?: number };
+
+// Portrait source photos crop very differently from landscape ones here --
+// at typical desktop widths the crop is width-driven, so only a narrow
+// horizontal band of the image survives, and that band is centered on
+// whatever `focusY` says (0 = top of the photo, 100 = bottom). Each photo's
+// subject sits at a different height in frame, so this needs to be settable
+// per photo rather than one fixed position for all of them. Defaults to 30
+// (a bit above center), a reasonable guess for a typical headshot-style crop.
+function focusStyle(focusY = 30): CSSProperties {
+  return { objectPosition: `50% ${focusY}%` };
+}
+
+// Crossfades through a set of background photos. AnimatePresence's default
+// ("sync") mode keeps the outgoing slide mounted while the incoming one
+// fades in on top of it, which is what gives the true crossfade instead of
+// a hard cut -- same autoplay-with-reduced-motion-escape-hatch pattern as
+// PhotoCarousel.
+function HeroSlideshow({ photos }: { photos: HeroPhoto[] }) {
+  const [index, setIndex] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (photos.length < 2 || shouldReduceMotion) return;
+    timerRef.current = setInterval(() => {
+      setIndex((i) => (i + 1) % photos.length);
+    }, SLIDESHOW_MS);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [photos.length, shouldReduceMotion]);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        key={index}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.4, ease: "easeInOut" }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={photos[index].src}
+          alt=""
+          aria-hidden
+          fill
+          priority={index === 0}
+          sizes="100vw"
+          className="object-cover"
+          style={focusStyle(photos[index].focusY)}
+        />
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
 export function PageHero({
   eyebrow,
   title,
   description,
   backgroundImage,
+  backgroundImages,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   backgroundImage?: string;
+  backgroundImages?: HeroPhoto[];
 }) {
-  if (backgroundImage) {
+  const photos = backgroundImages && backgroundImages.length > 0 ? backgroundImages : backgroundImage ? [{ src: backgroundImage }] : null;
+
+  if (photos) {
     return (
       <section className="relative min-h-[720px] overflow-hidden bg-clay-900 sm:min-h-[760px] lg:min-h-[820px]">
-        <Image
-          src={backgroundImage}
-          alt=""
-          aria-hidden
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {photos.length > 1 ? (
+          <HeroSlideshow photos={photos} />
+        ) : (
+          <Image
+            src={photos[0].src}
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            style={focusStyle(photos[0].focusY)}
+          />
+        )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-clay-900/85 via-clay-900/40 to-clay-900/10" />
 
         <div className="relative mx-auto flex min-h-[720px] max-w-3xl flex-col justify-end px-6 pb-16 text-center sm:min-h-[760px] sm:pb-20 lg:min-h-[820px]">

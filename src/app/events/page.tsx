@@ -25,6 +25,12 @@ export default async function EventsPage() {
         eyebrow="Mark Your Calendar"
         title="Upcoming events"
         description="Bi-monthly Shine Gatherings, Small Groups, Prayer Walks, Retreats and more. We'd love for you to join us!"
+        backgroundImages={[
+          { src: "/hero/events-hero-1.jpg", focusY: 15 },
+          { src: "/hero/events-hero-2.jpg", focusY: 32 },
+          { src: "/hero/events-hero-3.jpg", focusY: 22 },
+          { src: "/hero/events-hero-4.jpg", focusY: 42 },
+        ]}
       />
 
       <section className="bg-cream py-20 sm:py-24">
