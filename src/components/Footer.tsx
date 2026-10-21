@@ -7,6 +7,7 @@ import { TithelyGiveButton } from "@/components/donate/TithelyGiveButton";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { InstagramIcon, FacebookIcon } from "@/components/icons/SocialIcons";
 import { site } from "@/lib/site";
+import { useMainSiteHref } from "@/lib/use-main-site-href";
 
 export function Footer({
   tagline,
@@ -22,6 +23,7 @@ export function Footer({
   verseReference: string;
 }) {
   const { open: openContactModal } = useContactModal();
+  const { href } = useMainSiteHref();
 
   return (
     <footer className="border-t border-clay-900/10 bg-cream-soft">
@@ -49,7 +51,7 @@ export function Footer({
               {site.nav.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={href(item.href)}
                     className="text-sm text-clay-700 transition-colors hover:text-clay-900"
                   >
                     {item.label}

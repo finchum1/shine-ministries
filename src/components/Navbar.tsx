@@ -9,16 +9,19 @@ import { Button } from "@/components/ui/Button";
 import { TithelyGiveButton } from "@/components/donate/TithelyGiveButton";
 import { useContactModal } from "@/components/contact/ContactModalContext";
 import { site } from "@/lib/site";
+import { useMainSiteHref } from "@/lib/use-main-site-href";
 
 function NavLinks({ pathname }: { pathname: string }) {
+  const { onMerchHost, href } = useMainSiteHref();
   return (
     <>
       {site.nav.map((item) => {
-        const active = pathname === item.href;
+        // On the merch address, none of the main site's pages is "current".
+        const active = !onMerchHost && pathname === item.href;
         return (
           <Link
             key={item.href}
-            href={item.href}
+            href={href(item.href)}
             className="group relative py-1 text-sm font-medium text-clay-700 transition-colors hover:text-clay-900"
           >
             {item.label}
@@ -39,6 +42,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { open: openContactModal } = useContactModal();
+  const { onMerchHost, href } = useMainSiteHref();
 
   // Close the mobile menu on navigation. Following React's guidance for
   // "adjusting state when a prop changes," this compares during render
@@ -71,7 +75,7 @@ export function Navbar() {
           <NavLinks pathname={pathname} />
         </div>
 
-        <Link href="/" className="flex items-center justify-center">
+        <Link href={href("/")} className="flex items-center justify-center">
           <Image
             src="/brand/shine-logo.png"
             alt={site.name}
@@ -92,7 +96,7 @@ export function Navbar() {
 
       {/* Mobile: logo left, hamburger right */}
       <div className="flex items-center justify-between px-6 py-4 md:hidden">
-        <Link href="/" className="flex items-center">
+        <Link href={href("/")} className="flex items-center">
           <Image
             src="/brand/shine-logo.png"
             alt={site.name}
@@ -142,9 +146,9 @@ export function Navbar() {
                   transition={{ delay: i * 0.05 }}
                 >
                   <Link
-                    href={item.href}
+                    href={href(item.href)}
                     className={`block rounded-lg px-3 py-2.5 text-base font-medium ${
-                      pathname === item.href
+                      !onMerchHost && pathname === item.href
                         ? "bg-sage/15 text-clay-900"
                         : "text-clay-700"
                     }`}
