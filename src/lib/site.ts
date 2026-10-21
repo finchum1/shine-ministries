@@ -60,10 +60,13 @@ export const site = {
   // Bible Studies and Get Involved are built (src/app/bible-studies,
   // src/app/get-involved) but intentionally left out of nav for now —
   // add them back here when ready to relaunch those pages.
+  // A full address (https://...) is used as-is; a plain "/path" is a page on
+  // the main site. Merch lives on its own address (merch.shineministriesok.com).
   nav: [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
+    { href: "https://merch.shineministriesok.com", label: "Merch" },
   ],
 };
 

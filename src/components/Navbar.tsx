@@ -12,12 +12,11 @@ import { site } from "@/lib/site";
 import { useMainSiteHref } from "@/lib/use-main-site-href";
 
 function NavLinks({ pathname }: { pathname: string }) {
-  const { onMerchHost, href } = useMainSiteHref();
+  const { href, isActive } = useMainSiteHref();
   return (
     <>
       {site.nav.map((item) => {
-        // On the merch address, none of the main site's pages is "current".
-        const active = !onMerchHost && pathname === item.href;
+        const active = isActive(item.href, pathname);
         return (
           <Link
             key={item.href}
@@ -42,7 +41,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { open: openContactModal } = useContactModal();
-  const { onMerchHost, href } = useMainSiteHref();
+  const { href, isActive } = useMainSiteHref();
 
   // Close the mobile menu on navigation. Following React's guidance for
   // "adjusting state when a prop changes," this compares during render
@@ -71,7 +70,7 @@ export function Navbar() {
     >
       {/* Desktop: nav links left / logo centered & larger / actions right */}
       <nav className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-3 md:grid">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-5 lg:gap-8">
           <NavLinks pathname={pathname} />
         </div>
 
@@ -148,7 +147,7 @@ export function Navbar() {
                   <Link
                     href={href(item.href)}
                     className={`block rounded-lg px-3 py-2.5 text-base font-medium ${
-                      !onMerchHost && pathname === item.href
+                      isActive(item.href, pathname)
                         ? "bg-sage/15 text-clay-900"
                         : "text-clay-700"
                     }`}
