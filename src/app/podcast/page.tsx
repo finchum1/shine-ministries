@@ -82,9 +82,9 @@ export default function PodcastPage() {
             <img
               src="/podcast/good-news-therapy-logo.svg"
               alt="Good News Therapy with Gina Helms-Ouren"
-              width={1095}
-              height={804}
-              className="mx-auto h-auto w-full max-w-md"
+              width={1232}
+              height={374}
+              className="mx-auto h-auto w-full max-w-xl"
             />
           </h1>
           <p className="mt-6 inline-flex items-center rounded-full bg-honey-light px-5 py-2 text-sm font-semibold uppercase tracking-[0.15em] text-clay-900 ring-1 ring-honey/40">
