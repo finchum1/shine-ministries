@@ -87,38 +87,41 @@ export function HomeHero() {
         </motion.div>
 
         <div className="text-center md:text-left">
-          {/* Rising sun accent with a softly pulsing halo. */}
-          <motion.div
-            aria-hidden
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 0.85, y: 0 }}
-            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="relative isolate mx-auto mb-6 h-14 w-14 md:mx-0"
-          >
+          {/* Rising sun accent with a softly pulsing halo, on the right-hand
+              side above the copy. */}
+          <div className="flex justify-end">
             <motion.div
               aria-hidden
-              className="absolute left-1/2 top-1/2 -z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-2xl"
-              animate={
-                shouldReduceMotion
-                  ? { opacity: 0.35 }
-                  : { opacity: [0.25, 0.45, 0.25], scale: [1, 1.12, 1] }
-              }
-              transition={
-                shouldReduceMotion
-                  ? undefined
-                  : { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
-              }
-            />
-            <motion.div
-              animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-              transition={
-                shouldReduceMotion ? undefined : { duration: 90, repeat: Infinity, ease: "linear" }
-              }
-              className="text-gold"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 0.9, y: 0 }}
+              transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              className="relative isolate mb-4 h-24 w-24 sm:h-28 sm:w-28 lg:h-36 lg:w-36"
             >
-              <SunMark className="h-14 w-14" />
+              <motion.div
+                aria-hidden
+                className="absolute left-1/2 top-1/2 -z-10 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-3xl lg:h-64 lg:w-64"
+                animate={
+                  shouldReduceMotion
+                    ? { opacity: 0.35 }
+                    : { opacity: [0.25, 0.45, 0.25], scale: [1, 1.12, 1] }
+                }
+                transition={
+                  shouldReduceMotion
+                    ? undefined
+                    : { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+                }
+              />
+              <motion.div
+                animate={shouldReduceMotion ? undefined : { rotate: 360 }}
+                transition={
+                  shouldReduceMotion ? undefined : { duration: 90, repeat: Infinity, ease: "linear" }
+                }
+                className="text-gold"
+              >
+                <SunMark className="h-full w-full" />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Mission statement */}
           <motion.p
