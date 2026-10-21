@@ -74,14 +74,20 @@ export default function PodcastPage() {
       />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:py-24 md:grid-cols-2 lg:gap-20">
-        <Reveal>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
-            The Podcast
-          </p>
-          <h1 className="font-display text-5xl leading-tight text-clay-900 sm:text-6xl">
-            Good News Therapy
+        <Reveal className="text-center">
+          {/* The show's logo stands in for a text heading; its alt text is the
+              page's <h1> for screen readers and search engines. */}
+          <h1>
+            {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo, no need for the image optimizer */}
+            <img
+              src="/podcast/good-news-therapy-logo.svg"
+              alt="Good News Therapy with Gina Helms-Ouren"
+              width={1095}
+              height={804}
+              className="mx-auto h-auto w-full max-w-md"
+            />
           </h1>
-          <p className="mt-5 inline-flex items-center rounded-full bg-honey-light px-5 py-2 text-sm font-semibold uppercase tracking-[0.15em] text-clay-900 ring-1 ring-honey/40">
+          <p className="mt-6 inline-flex items-center rounded-full bg-honey-light px-5 py-2 text-sm font-semibold uppercase tracking-[0.15em] text-clay-900 ring-1 ring-honey/40">
             Coming soon
           </p>
 
