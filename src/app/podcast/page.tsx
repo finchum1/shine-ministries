@@ -73,10 +73,14 @@ export default function PodcastPage() {
         className="pointer-events-none absolute -left-24 bottom-10 h-72 w-72 rounded-full bg-sage/15 blur-3xl"
       />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:py-24 md:grid-cols-2 lg:gap-20">
-        <Reveal className="text-center">
-          {/* The show's logo stands in for a text heading; its alt text is the
-              page's <h1> for screen readers and search engines. */}
+      {/* Three blocks: logo + badge, the photo, and the platform list.
+          On a large screen the logo and platforms stack in the left column
+          beside the photo; on smaller screens they run in order -- logo,
+          photo, then the platforms below the photo. */}
+      <div className="relative mx-auto grid max-w-6xl gap-x-12 gap-y-10 px-6 py-16 sm:py-24 lg:grid-cols-2 lg:gap-x-20">
+        <Reveal className="text-center lg:col-start-1 lg:row-start-1 lg:self-end">
+          {/* The show’s logo stands in for a text heading; its alt text is the
+              page’s <h1> for screen readers and search engines. */}
           <h1>
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo, no need for the image optimizer */}
             <img
@@ -90,18 +94,12 @@ export default function PodcastPage() {
           <p className="mt-6 inline-flex items-center rounded-full bg-honey-light px-5 py-2 text-sm font-semibold uppercase tracking-[0.15em] text-clay-900 ring-1 ring-honey/40">
             Coming soon
           </p>
-
-          <p className="mt-10 text-sm font-semibold uppercase tracking-[0.2em] text-clay-700">
-            Listen on
-          </p>
-          <ul className="mt-4 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-            {podcastPlatforms.map((platform) => (
-              <PlatformTile key={platform.name} platform={platform} />
-            ))}
-          </ul>
         </Reveal>
 
-        <Reveal delay={0.1} className="mx-auto w-full max-w-sm md:max-w-md">
+        <Reveal
+          delay={0.1}
+          className="mx-auto w-full max-w-sm md:max-w-md lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center"
+        >
           <Image
             src="/podcast/good-news-therapy.jpg"
             alt="A smiling woman in a navy top with her arms crossed"
@@ -111,6 +109,20 @@ export default function PodcastPage() {
             sizes="(min-width: 768px) 448px, 90vw"
             className="h-auto w-full rounded-3xl shadow-lg shadow-clay-900/10 ring-1 ring-clay-900/5"
           />
+        </Reveal>
+
+        <Reveal
+          delay={0.15}
+          className="mx-auto w-full max-w-2xl text-center lg:col-start-1 lg:row-start-2 lg:max-w-none lg:self-start"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-clay-700">
+            Listen on
+          </p>
+          <ul className="mt-4 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-2">
+            {podcastPlatforms.map((platform) => (
+              <PlatformTile key={platform.name} platform={platform} />
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>
