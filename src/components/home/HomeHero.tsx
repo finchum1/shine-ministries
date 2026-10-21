@@ -41,21 +41,20 @@ export function HomeHero() {
   const { open: openContactModal } = useContactModal();
 
   return (
-    <section className="relative min-h-[720px] overflow-hidden bg-clay-900 sm:min-h-[600px]">
-      {/* Group photo as the hero backdrop */}
-      <Image
-        src="/hero/hero-group-photo.jpg"
-        alt=""
+    <section className="relative overflow-hidden bg-cream">
+      {/* soft floating earth-tone blobs */}
+      <motion.div
         aria-hidden
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
+        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-sage/20 blur-3xl"
+        animate={{ y: [0, 18, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
-
-      {/* Scrim so the text and buttons stay legible over the photo,
-          darkest toward the bottom where the CTAs sit. */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-clay-900/85 via-clay-900/55 to-clay-900/35" />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -right-16 top-32 h-80 w-80 rounded-full bg-terracotta-light/30 blur-3xl"
+        animate={{ y: [0, -16, 0] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* warm horizon glow that brightens in as the sun rises */}
       <motion.div
@@ -66,96 +65,124 @@ export function HomeHero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-honey/40 via-honey/10 to-transparent blur-2xl"
       />
 
-      {/* Rising sun — visible at every size, scaling up from a compact
-          top-corner accent on mobile to the full desktop treatment. */}
-      <div className="pointer-events-none absolute right-3 top-3 sm:right-6 sm:top-16 lg:right-16">
+      {/* Photo on the left, copy and buttons on the right. On a phone they
+          stack, photo first. */}
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 py-12 sm:py-16 md:grid-cols-2 md:gap-12 lg:gap-20">
         <motion.div
-          aria-hidden
-          initial={{ opacity: 0, y: 130 }}
-          animate={{ opacity: 0.65, y: 0 }}
-          transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className="relative"
-        >
-          {/* glowing halo behind the sun, pulsing gently once risen */}
-          <motion.div
-            aria-hidden
-            className="absolute left-1/2 top-1/2 -z-10 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-2xl sm:h-44 sm:w-44 sm:blur-3xl md:h-56 md:w-56"
-            animate={shouldReduceMotion ? { opacity: 0.35 } : { opacity: [0.25, 0.45, 0.25], scale: [1, 1.12, 1] }}
-            transition={shouldReduceMotion ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          />
-          <motion.div
-            animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-            transition={shouldReduceMotion ? undefined : { duration: 90, repeat: Infinity, ease: "linear" }}
-            className="text-gold"
-          >
-            <SunMark className="h-12 w-12 sm:h-20 sm:w-20 md:h-24 md:w-24" />
-          </motion.div>
-        </motion.div>
-      </div>
-
-      <div className="relative mx-auto flex min-h-[720px] max-w-4xl flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:min-h-[600px] sm:pb-20">
-        {/* Mission statement */}
-        <motion.p
           custom={0}
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-6 max-w-[15rem] font-display text-2xl italic leading-relaxed text-cream [text-shadow:0_2px_14px_rgba(0,0,0,0.5)] sm:max-w-none sm:whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl"
+          className="mx-auto w-full max-w-[19rem] sm:max-w-sm md:max-w-md"
         >
-          Gathering and empowering women to shine His glory!
-        </motion.p>
-
-        <motion.h1
-          custom={0.1}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="font-display text-3xl leading-tight sm:text-4xl"
-        >
-          <motion.span
-            className="text-honey"
-            animate={
-              shouldReduceMotion
-                ? { textShadow: glowShadow(0.8, "230, 193, 90") }
-                : brightenKeyframes("230, 193, 90", 0.85)
-            }
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1, times: [0, 0.25, 0.6, 0.9, 1] }
-            }
-          >
-            Brighter and{" "}
-          </motion.span>
-          <motion.span
-            className="italic text-honey"
-            animate={
-              shouldReduceMotion
-                ? { textShadow: glowShadow(1.15, "230, 193, 90") }
-                : brightenKeyframes("230, 193, 90", 1.15)
-            }
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.4, times: [0, 0.25, 0.6, 0.9, 1] }
-            }
-          >
-            Brighter.
-          </motion.span>
-        </motion.h1>
-
-        <motion.div
-          custom={0.32}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
-          <Button onClick={() => openContactModal()}>Get in Touch</Button>
-          <ButtonLink href="/events" variant="secondary-inverted">
-            See What&rsquo;s Happening
-          </ButtonLink>
+          <Image
+            src="/hero/home-hero-portrait.jpg"
+            alt="A smiling woman in a navy top and jeans, seated on the arm of a cream sofa"
+            width={846}
+            height={1259}
+            priority
+            sizes="(min-width: 768px) 448px, 90vw"
+            className="h-auto w-full rounded-3xl shadow-lg shadow-clay-900/10 ring-1 ring-clay-900/5"
+          />
         </motion.div>
+
+        <div className="text-center md:text-left">
+          {/* Rising sun accent with a softly pulsing halo. */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 0.85, y: 0 }}
+            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="relative isolate mx-auto mb-6 h-14 w-14 md:mx-0"
+          >
+            <motion.div
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold blur-2xl"
+              animate={
+                shouldReduceMotion
+                  ? { opacity: 0.35 }
+                  : { opacity: [0.25, 0.45, 0.25], scale: [1, 1.12, 1] }
+              }
+              transition={
+                shouldReduceMotion
+                  ? undefined
+                  : { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+              }
+            />
+            <motion.div
+              animate={shouldReduceMotion ? undefined : { rotate: 360 }}
+              transition={
+                shouldReduceMotion ? undefined : { duration: 90, repeat: Infinity, ease: "linear" }
+              }
+              className="text-gold"
+            >
+              <SunMark className="h-14 w-14" />
+            </motion.div>
+          </motion.div>
+
+          {/* Mission statement */}
+          <motion.p
+            custom={0.05}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mb-5 font-display text-2xl italic leading-snug text-clay-900 sm:text-3xl lg:text-4xl"
+          >
+            Gathering and empowering women to shine His glory!
+          </motion.p>
+
+          <motion.h1
+            custom={0.15}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="font-display text-4xl leading-tight sm:text-5xl"
+          >
+            <motion.span
+              className="text-honey"
+              animate={
+                shouldReduceMotion
+                  ? { textShadow: glowShadow(0.8, "230, 193, 90") }
+                  : brightenKeyframes("230, 193, 90", 0.85)
+              }
+              transition={
+                shouldReduceMotion
+                  ? undefined
+                  : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1, times: [0, 0.25, 0.6, 0.9, 1] }
+              }
+            >
+              Brighter and{" "}
+            </motion.span>
+            <motion.span
+              className="italic text-honey"
+              animate={
+                shouldReduceMotion
+                  ? { textShadow: glowShadow(1.15, "230, 193, 90") }
+                  : brightenKeyframes("230, 193, 90", 1.15)
+              }
+              transition={
+                shouldReduceMotion
+                  ? undefined
+                  : { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.4, times: [0, 0.25, 0.6, 0.9, 1] }
+              }
+            >
+              Brighter.
+            </motion.span>
+          </motion.h1>
+
+          <motion.div
+            custom={0.32}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start"
+          >
+            <Button onClick={() => openContactModal()}>Get in Touch</Button>
+            <ButtonLink href="/events" variant="secondary">
+              See What&rsquo;s Happening
+            </ButtonLink>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

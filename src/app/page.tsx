@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { HomeHero } from "@/components/home/HomeHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
@@ -41,6 +42,21 @@ export default async function Home() {
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-clay-900">
             {verse.reference}
           </p>
+        </Reveal>
+      </section>
+
+      {/* Group photo -- its own section, no text over it. Shown at its full
+          shape (not cropped) so everyone's faces stay in frame. */}
+      <section className="bg-cream pb-20 sm:pb-24">
+        <Reveal className="mx-auto max-w-6xl px-6">
+          <Image
+            src="/hero/hero-group-photo.jpg"
+            alt="Women of Shine Ministries gathered together"
+            width={2000}
+            height={1333}
+            sizes="(min-width: 1152px) 1104px, 100vw"
+            className="h-auto w-full rounded-3xl shadow-sm ring-1 ring-clay-900/5"
+          />
         </Reveal>
       </section>
 
