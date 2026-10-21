@@ -1,9 +1,17 @@
 "use server";
 
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase";
-import { sendContactNotification, sendNewsletterSignupNotification } from "@/lib/email";
+import {
+  sendContactNotification,
+  sendNewsletterSignupNotification,
+  sendMerchOrderNotification,
+} from "@/lib/email";
+import { MAX_QUANTITY, formatMoney, paymentUrlForTotal } from "@/lib/merch-shared";
 
 export type ActionResult = { ok: boolean; message: string };
+
+// A merch order that was saved also says where to send the buyer to pay.
+export type MerchOrderResult = ActionResult & { paymentUrl?: string };
 
 function readString(formData: FormData, key: string): string {
   const value = formData.get(key);
@@ -139,4 +147,100 @@ export async function submitNewsletterSignup(
   }
 
   return { ok: true, message: "You're subscribed! Thanks for staying connected." };
+}
+
+// Friendly wording for each reason the database function can refuse an order.
+const merchOrderErrors: Record<string, string> = {
+  ITEM_CLOSED: "Sorry — orders for this item are closed.",
+  NAME_REQUIRED: "Please enter your name.",
+  CONTACT_REQUIRED: "Please enter an email or phone number so we can reach you.",
+  BAD_EMAIL: "That email address doesn't look right.",
+  BAD_PHONE: "That phone number is too long.",
+  SIZE_REQUIRED: "Please choose a size.",
+  BAD_QUANTITY: `Please order between 1 and ${MAX_QUANTITY}.`,
+};
+
+export async function submitMerchOrder(
+  _prev: MerchOrderResult | null,
+  formData: FormData
+): Promise<MerchOrderResult> {
+  // Hidden field real visitors never see or fill in; if it has anything in
+  // it, it's a bot -- act like it worked and save nothing.
+  if (readString(formData, "website")) {
+    return { ok: true, message: "Thank you!" };
+  }
+
+  if (!isSupabaseConfigured) {
+    return { ok: false, message: "Ordering isn't available right now — please check back soon." };
+  }
+
+  const item_id = readString(formData, "item_id");
+  const quantity = Number(readString(formData, "quantity"));
+  if (!item_id) {
+    return { ok: false, message: "Please choose an item." };
+  }
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > MAX_QUANTITY) {
+    return { ok: false, message: merchOrderErrors.BAD_QUANTITY };
+  }
+
+  const buyer_name = readString(formData, "buyer_name");
+  const email = readString(formData, "email");
+  const phone = readString(formData, "phone");
+  const size = readString(formData, "size");
+
+  // The price is never taken from the form -- the database function looks
+  // it up from the item, so it can't be changed from the browser.
+  const supabase = getSupabaseClient();
+  const { data, error } = await supabase!.rpc("place_merch_order", {
+    p_item_id: item_id,
+    p_name: buyer_name,
+    p_email: email,
+    p_phone: phone,
+    p_size: size,
+    p_quantity: quantity,
+  });
+
+  if (error) {
+    const known = Object.keys(merchOrderErrors).find((code) => error.message.includes(code));
+    if (known) return { ok: false, message: merchOrderErrors[known] };
+    console.error("place_merch_order error", error);
+    return { ok: false, message: "Something went wrong. Please try again in a moment." };
+  }
+
+  const order = (
+    data as {
+      r_order_id: string;
+      r_item_name: string;
+      r_quantity: number;
+      r_total: number | string;
+      r_payment_url: string | null;
+    }[]
+  )[0];
+  const total = Number(order.r_total);
+
+  // Best-effort heads-up -- the order is already saved above regardless.
+  const notifyResult = await sendMerchOrderNotification({
+    buyer_name,
+    email: email || undefined,
+    phone: phone || undefined,
+    item_name: order.r_item_name,
+    size,
+    quantity: order.r_quantity,
+    total: formatMoney(total),
+  });
+  if (!notifyResult.ok) {
+    console.error("merch order notification error", notifyResult.error);
+  }
+
+  const firstName = buyer_name.split(" ")[0];
+  const paymentUrl = order.r_payment_url
+    ? paymentUrlForTotal(order.r_payment_url, total)
+    : undefined;
+  return {
+    ok: true,
+    message: paymentUrl
+      ? `Thank you, ${firstName}! Your order is saved — one more step: complete your payment of ${formatMoney(total)}.`
+      : `Thank you, ${firstName}! Your order is saved — we'll be in touch about payment.`,
+    paymentUrl,
+  };
 }

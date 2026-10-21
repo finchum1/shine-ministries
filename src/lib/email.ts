@@ -87,3 +87,51 @@ export async function sendNewsletterSignupNotification(email: string): Promise<{
   }
   return { ok: true };
 }
+
+// Where new merch-order notifications go. The order itself is already saved
+// in the office app's Merch list -- this is the heads-up that it's there.
+const MERCH_RECIPIENT = "brookefinchum@gmail.com";
+
+export async function sendMerchOrderNotification(order: {
+  buyer_name: string;
+  email?: string;
+  phone?: string;
+  item_name: string;
+  size: string;
+  quantity: number;
+  total: string;
+}): Promise<{ ok: boolean; error?: string }> {
+  const resend = getClient();
+  if (!resend) {
+    return { ok: false, error: "RESEND_API_KEY is not set." };
+  }
+
+  const { error } = await resend.emails.send({
+    from: "Shine Ministries Website <hello@shineministriesok.com>",
+    to: MERCH_RECIPIENT,
+    // Replying goes straight to the buyer when they left an email.
+    replyTo: order.email,
+    subject: `New merch order — ${order.buyer_name} (${order.quantity} × ${order.item_name})`,
+    text: [
+      `${order.buyer_name} just placed an order on the merch page.`,
+      "",
+      `Item: ${order.item_name}`,
+      `Size: ${order.size}`,
+      `Quantity: ${order.quantity}`,
+      `Total: ${order.total}`,
+      order.email ? `Email: ${order.email}` : null,
+      order.phone ? `Phone: ${order.phone}` : null,
+      "",
+      "They were sent on to pay through Tithe.ly. The order is saved as Unpaid in the",
+      "office app -- mark it Paid once you see their payment:",
+      "https://office.shineministriesok.com/merch",
+    ]
+      .filter((line): line is string => line !== null)
+      .join("\n"),
+  });
+
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+  return { ok: true };
+}
