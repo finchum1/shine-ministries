@@ -69,7 +69,7 @@ export function Navbar() {
       }`}
     >
       {/* Desktop: nav links left / logo centered & larger / actions right */}
-      <nav className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-3 md:grid">
+      <nav className="mx-auto hidden max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-3 lg:grid">
         <div className="flex items-center gap-5 lg:gap-8">
           <NavLinks pathname={pathname} />
         </div>
@@ -94,7 +94,7 @@ export function Navbar() {
       </nav>
 
       {/* Mobile: logo left, hamburger right */}
-      <div className="flex items-center justify-between px-6 py-4 md:hidden">
+      <div className="flex items-center justify-between px-6 py-4 lg:hidden">
         <Link href={href("/")} className="flex items-center">
           <Image
             src="/brand/shine-logo.png"
@@ -134,7 +134,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-clay-900/10 bg-cream md:hidden"
+            className="overflow-hidden border-t border-clay-900/10 bg-cream lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
               {site.nav.map((item, i) => (

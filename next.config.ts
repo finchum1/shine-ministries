@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   // link, a typed URL) is sent to the real site instead of being served
   // from the merch address.
   async redirects() {
-    return ["about", "events", "bible-studies", "get-involved"].map((page) => ({
+    return ["about", "events", "podcast", "bible-studies", "get-involved"].map((page) => ({
       source: `/${page}`,
       has: [{ type: "host" as const, value: "merch.shineministriesok.com" }],
       destination: `https://www.shineministriesok.com/${page}`,

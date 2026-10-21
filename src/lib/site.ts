@@ -66,6 +66,7 @@ export const site = {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
+    { href: "/podcast", label: "Podcast" },
     { href: "https://merch.shineministriesok.com", label: "Merch" },
   ],
 };
