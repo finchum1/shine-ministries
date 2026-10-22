@@ -135,3 +135,73 @@ export async function sendMerchOrderNotification(order: {
   }
   return { ok: true };
 }
+
+// Where Bible study sign-up notifications go. The signup itself is saved in
+// bible_study_signups — this is the heads-up so it doesn't sit unnoticed.
+const BIBLE_STUDY_RECIPIENT = "brookefinchum@gmail.com";
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function singleLine(value: string): string {
+  return value.replace(/[\r\n]+/g, " ").trim();
+}
+
+function htmlText(value: string): string {
+  return escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>");
+}
+
+export async function sendBibleStudySignupNotification(fields: {
+  full_name: string;
+  email: string;
+  phone?: string;
+  bible_study_id?: string;
+  study_name?: string;
+  message?: string;
+}): Promise<{ ok: boolean; error?: string }> {
+  const resend = getClient();
+  if (!resend) {
+    return { ok: false, error: "RESEND_API_KEY is not set." };
+  }
+
+  const studyName = fields.study_name?.trim() ?? "";
+  const phone = fields.phone?.trim() ?? "";
+  const bibleStudyId = fields.bible_study_id?.trim() ?? "";
+  const message = fields.message?.trim() ?? "";
+  const studyLabel = studyName || "Not sure yet";
+  const subjectWho = singleLine(studyName || fields.full_name);
+
+  const rows: [string, string][] = [
+    ["Name", fields.full_name],
+    ["Email", fields.email],
+    ["Phone", phone || "—"],
+    ["Study", studyLabel],
+    ["Study id", bibleStudyId || "—"],
+    ["Message", message || "—"],
+  ];
+
+  const text = rows.map(([label, value]) => `${label}: ${value}`).join("\n");
+  const html = rows
+    .map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${htmlText(value)}</p>`)
+    .join("");
+
+  const { error } = await resend.emails.send({
+    from: "Shine Ministries Website <hello@shineministriesok.com>",
+    to: BIBLE_STUDY_RECIPIENT,
+    replyTo: singleLine(fields.email),
+    subject: `New Bible study sign-up: ${subjectWho}`,
+    text,
+    html,
+  });
+
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+  return { ok: true };
+}
