@@ -15,7 +15,9 @@ const initialState: MerchOrderResult | null = null;
 const inputClass =
   "w-full rounded-xl border border-clay-900/12 bg-cream px-4 py-3 text-sm text-clay-900 outline-none transition-shadow placeholder:text-clay-500 focus:border-terracotta focus:ring-2 focus:ring-terracotta/30";
 
-export function MerchOrderForm({ items }: { items: OpenMerchItem[] }) {
+// `item` is whichever product is currently selected on the page; the form keeps
+// what the person has typed when they switch between products.
+export function MerchOrderForm({ item }: { item: OpenMerchItem }) {
   const [state, formAction, pending] = useActionState(submitMerchOrder, initialState);
 
   // The action is dispatched from onSubmit rather than passed as the form's
@@ -29,16 +31,14 @@ export function MerchOrderForm({ items }: { items: OpenMerchItem[] }) {
     startTransition(() => formAction(formData));
   }
 
-  const [itemId, setItemId] = useState(items[0]?.id ?? "");
   const [buyerName, setBuyerName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState("1");
 
-  const item = items.find((i) => i.id === itemId) ?? items[0];
   const qty = Number(quantity);
-  const total = item && Number.isInteger(qty) && qty >= 1 ? item.price * qty : null;
+  const total = Number.isInteger(qty) && qty >= 1 ? item.price * qty : null;
 
   // Once the order is saved, carry the buyer straight on to pay. The button
   // below does the same thing if the automatic jump doesn't happen.
@@ -72,25 +72,7 @@ export function MerchOrderForm({ items }: { items: OpenMerchItem[] }) {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
-      {items.length > 1 ? (
-        <label className="sm:col-span-2">
-          <span className="mb-1.5 block text-sm font-medium text-clay-700">Item</span>
-          <select
-            name="item_id"
-            value={itemId}
-            onChange={(e) => setItemId(e.target.value)}
-            className={inputClass}
-          >
-            {items.map((i) => (
-              <option key={i.id} value={i.id}>
-                {i.name} — {formatMoney(i.price)}
-              </option>
-            ))}
-          </select>
-        </label>
-      ) : (
-        <input type="hidden" name="item_id" value={item?.id ?? ""} />
-      )}
+      <input type="hidden" name="item_id" value={item.id} />
 
       <label className="sm:col-span-2">
         <span className="mb-1.5 block text-sm font-medium text-clay-700">Full name</span>
@@ -131,27 +113,30 @@ export function MerchOrderForm({ items }: { items: OpenMerchItem[] }) {
         Email or phone — at least one, so we can reach you about pickup.
       </p>
 
-      <label>
-        <span className="mb-1.5 block text-sm font-medium text-clay-700">Size</span>
-        <select
-          name="size"
-          required
-          value={size}
-          onChange={(e) => setSize(e.target.value)}
-          className={inputClass}
-        >
-          <option value="" disabled>
-            Choose a size
-          </option>
-          {MERCH_SIZES.map((s) => (
-            <option key={s} value={s}>
-              {s}
+      {item.hasSizes && (
+        <label>
+          <span className="mb-1.5 block text-sm font-medium text-clay-700">Size</span>
+          <select
+            name="size"
+            required
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+            className={inputClass}
+          >
+            <option value="" disabled>
+              Choose a size
             </option>
-          ))}
-        </select>
-      </label>
+            {MERCH_SIZES.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </label>
 
-      <label>
+      )}
+
+      <label className={item.hasSizes ? undefined : "sm:col-span-2"}>
         <span className="mb-1.5 block text-sm font-medium text-clay-700">Quantity</span>
         <input
           name="quantity"

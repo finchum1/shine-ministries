@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
         hostname: "www.shineministriesok.com",
         pathname: "/brand/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.shineministriesok.com",
+        pathname: "/merch/**",
+      },
     ],
   },
 };

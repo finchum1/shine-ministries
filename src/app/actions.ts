@@ -224,7 +224,7 @@ export async function submitMerchOrder(
     email: email || undefined,
     phone: phone || undefined,
     item_name: order.r_item_name,
-    size,
+    size: size || undefined,
     quantity: order.r_quantity,
     total: formatMoney(total),
   });

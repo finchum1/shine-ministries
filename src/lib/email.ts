@@ -97,7 +97,8 @@ export async function sendMerchOrderNotification(order: {
   email?: string;
   phone?: string;
   item_name: string;
-  size: string;
+  // Absent for items that do not come in sizes (like the tote bag).
+  size?: string;
   quantity: number;
   total: string;
 }): Promise<{ ok: boolean; error?: string }> {
@@ -116,7 +117,7 @@ export async function sendMerchOrderNotification(order: {
       `${order.buyer_name} just placed an order on the merch page.`,
       "",
       `Item: ${order.item_name}`,
-      `Size: ${order.size}`,
+      order.size ? `Size: ${order.size}` : null,
       `Quantity: ${order.quantity}`,
       `Total: ${order.total}`,
       order.email ? `Email: ${order.email}` : null,

@@ -1,7 +1,15 @@
 // Pure helpers and constants for merch ordering -- safe to import from client
 // components (no database client in here).
 
-export type OpenMerchItem = { id: string; name: string; price: number };
+export type OpenMerchItem = {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string | null;
+  description: string | null;
+  // Shirts come in sizes; a tote bag doesn’t.
+  hasSizes: boolean;
+};
 
 // Same list the office app uses, so sizes line up on both sides.
 export const MERCH_SIZES = [

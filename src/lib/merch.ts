@@ -2,7 +2,7 @@ import { getSupabaseClient } from "@/lib/supabase";
 import type { OpenMerchItem } from "@/lib/merch-shared";
 
 // Items the office has switched on for online orders. The database function
-// only ever returns id, name and price for items that are switched on, so a
+// only ever returns display fields (name, price, photo, description) for items that are switched on, so a
 // closed or unfinished item can't leak out through here.
 export async function getOpenMerchItems(): Promise<OpenMerchItem[]> {
   const supabase = getSupabaseClient();
@@ -13,9 +13,21 @@ export async function getOpenMerchItems(): Promise<OpenMerchItem[]> {
     if (error) console.error("get_open_merch_items error", error);
     return [];
   }
-  return (data as { id: string; name: string; price: number | string }[]).map((row) => ({
+  return (
+    data as {
+      id: string;
+      name: string;
+      price: number | string;
+      image_url: string | null;
+      description: string | null;
+      has_sizes: boolean | null;
+    }[]
+  ).map((row) => ({
     id: row.id,
     name: row.name,
     price: Number(row.price),
+    imageUrl: row.image_url ?? null,
+    description: row.description ?? null,
+    hasSizes: row.has_sizes ?? true,
   }));
 }
