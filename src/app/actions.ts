@@ -151,14 +151,42 @@ export async function submitNewsletterSignup(
 
 // Friendly wording for each reason the database function can refuse an order.
 const merchOrderErrors: Record<string, string> = {
-  ITEM_CLOSED: "Sorry — orders for this item are closed.",
+  ITEM_CLOSED: "Sorry — orders for one of these items are closed.",
+  NO_ITEMS: "Please add at least one item to your order.",
   NAME_REQUIRED: "Please enter your name.",
   CONTACT_REQUIRED: "Please enter an email or phone number so we can reach you.",
   BAD_EMAIL: "That email address doesn't look right.",
   BAD_PHONE: "That phone number is too long.",
-  SIZE_REQUIRED: "Please choose a size.",
-  BAD_QUANTITY: `Please order between 1 and ${MAX_QUANTITY}.`,
+  SIZE_REQUIRED: "Please choose a size for each item that comes in sizes.",
+  BAD_QUANTITY: `Please order between 1 and ${MAX_QUANTITY} of each item (20 in all).`,
 };
+
+type CartLine = { item_id: string; size: string; quantity: number };
+
+// The order page sends its lines as JSON in one hidden field. Only the shape
+// is checked here; the database decides everything else (prices, sizes,
+// whether an item is open).
+function readCartLines(formData: FormData): CartLine[] | null {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(readString(formData, "lines") || "[]");
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(raw)) return null;
+  const lines: CartLine[] = [];
+  for (const entry of raw) {
+    if (!entry || typeof entry !== "object") return null;
+    const { item_id, size, quantity } = entry as Record<string, unknown>;
+    if (typeof item_id !== "string") return null;
+    lines.push({
+      item_id,
+      size: typeof size === "string" ? size : "",
+      quantity: Number(quantity),
+    });
+  }
+  return lines;
+}
 
 export async function submitMerchOrder(
   _prev: MerchOrderResult | null,
@@ -174,46 +202,42 @@ export async function submitMerchOrder(
     return { ok: false, message: "Ordering isn't available right now — please check back soon." };
   }
 
-  const item_id = readString(formData, "item_id");
-  const quantity = Number(readString(formData, "quantity"));
-  if (!item_id) {
-    return { ok: false, message: "Please choose an item." };
+  const lines = readCartLines(formData);
+  if (!lines || lines.length === 0) {
+    return { ok: false, message: merchOrderErrors.NO_ITEMS };
   }
-  if (!Number.isInteger(quantity) || quantity < 1 || quantity > MAX_QUANTITY) {
+  if (lines.some((l) => !Number.isInteger(l.quantity) || l.quantity < 1 || l.quantity > MAX_QUANTITY)) {
     return { ok: false, message: merchOrderErrors.BAD_QUANTITY };
   }
 
   const buyer_name = readString(formData, "buyer_name");
   const email = readString(formData, "email");
   const phone = readString(formData, "phone");
-  const size = readString(formData, "size");
 
-  // The price is never taken from the form -- the database function looks
-  // it up from the item, so it can't be changed from the browser.
+  // Prices are never taken from the form -- the database function looks them
+  // up from the items, so they can't be changed from the browser. The whole
+  // checkout is saved together or not at all.
   const supabase = getSupabaseClient();
-  const { data, error } = await supabase!.rpc("place_merch_order", {
-    p_item_id: item_id,
+  const { data, error } = await supabase!.rpc("place_merch_cart", {
     p_name: buyer_name,
     p_email: email,
     p_phone: phone,
-    p_size: size,
-    p_quantity: quantity,
+    p_lines: lines,
   });
 
   if (error) {
     const known = Object.keys(merchOrderErrors).find((code) => error.message.includes(code));
     if (known) return { ok: false, message: merchOrderErrors[known] };
-    console.error("place_merch_order error", error);
+    console.error("place_merch_cart error", error);
     return { ok: false, message: "Something went wrong. Please try again in a moment." };
   }
 
   const order = (
     data as {
-      r_order_id: string;
-      r_item_name: string;
-      r_quantity: number;
+      r_checkout_id: string;
       r_total: number | string;
       r_payment_url: string | null;
+      r_lines: { item_name: string; size: string | null; quantity: number; unit_price: number | string }[];
     }[]
   )[0];
   const total = Number(order.r_total);
@@ -223,15 +247,20 @@ export async function submitMerchOrder(
     buyer_name,
     email: email || undefined,
     phone: phone || undefined,
-    item_name: order.r_item_name,
-    size: size || undefined,
-    quantity: order.r_quantity,
+    lines: order.r_lines.map((l) => ({
+      item_name: l.item_name,
+      size: l.size,
+      quantity: l.quantity,
+      unit_price: Number(l.unit_price),
+    })),
     total: formatMoney(total),
   });
   if (!notifyResult.ok) {
     console.error("merch order notification error", notifyResult.error);
   }
 
+  // One payment for the whole checkout: the link's amount is replaced with
+  // the combined total (every item's price x quantity, added up).
   const firstName = buyer_name.split(" ")[0];
   const paymentUrl = order.r_payment_url
     ? paymentUrlForTotal(order.r_payment_url, total)

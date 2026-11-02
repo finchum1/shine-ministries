@@ -96,10 +96,8 @@ export async function sendMerchOrderNotification(order: {
   buyer_name: string;
   email?: string;
   phone?: string;
-  item_name: string;
-  // Absent for items that do not come in sizes (like the tote bag).
-  size?: string;
-  quantity: number;
+  // Everything in this one checkout -- a buyer can order several items together.
+  lines: { item_name: string; size?: string | null; quantity: number; unit_price: number }[];
   total: string;
 }): Promise<{ ok: boolean; error?: string }> {
   const resend = getClient();
@@ -107,18 +105,22 @@ export async function sendMerchOrderNotification(order: {
     return { ok: false, error: "RESEND_API_KEY is not set." };
   }
 
+  const describe = (l: (typeof order.lines)[number]) =>
+    `${l.quantity} × ${l.item_name}${l.size ? ` (${l.size})` : ""}`;
+  const summary =
+    order.lines.length === 1 ? describe(order.lines[0]) : `${order.lines.length} items`;
+
   const { error } = await resend.emails.send({
     from: "Shine Ministries Website <hello@shineministriesok.com>",
     to: MERCH_RECIPIENT,
     // Replying goes straight to the buyer when they left an email.
     replyTo: order.email,
-    subject: `New merch order — ${order.buyer_name} (${order.quantity} × ${order.item_name})`,
+    subject: `New merch order — ${order.buyer_name} (${summary})`,
     text: [
       `${order.buyer_name} just placed an order on the merch page.`,
       "",
-      `Item: ${order.item_name}`,
-      order.size ? `Size: ${order.size}` : null,
-      `Quantity: ${order.quantity}`,
+      ...order.lines.map((l) => `• ${describe(l)}`),
+      "",
       `Total: ${order.total}`,
       order.email ? `Email: ${order.email}` : null,
       order.phone ? `Phone: ${order.phone}` : null,
