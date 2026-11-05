@@ -2,11 +2,13 @@
 
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase";
 import {
+  sendBibleStudySignupNotification,
   sendContactNotification,
   sendNewsletterSignupNotification,
   sendMerchOrderNotification,
 } from "@/lib/email";
 import { MAX_QUANTITY, formatMoney, paymentUrlForTotal } from "@/lib/merch-shared";
+import { fallbackBibleStudies } from "@/lib/site";
 
 export type ActionResult = { ok: boolean; message: string };
 
@@ -16,6 +18,30 @@ export type MerchOrderResult = ActionResult & { paymentUrl?: string };
 function readString(formData: FormData, key: string): string {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim() : "";
+}
+
+async function lookupBibleStudyTitle(bibleStudyId: string): Promise<string | undefined> {
+  if (!bibleStudyId) return undefined;
+
+  try {
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase!
+      .from("bible_studies")
+      .select("title")
+      .eq("id", bibleStudyId)
+      .maybeSingle();
+
+    if (error) {
+      console.error("bible study title lookup error", error);
+      return undefined;
+    }
+
+    const title = (data as { title?: string } | null)?.title?.trim();
+    return title || undefined;
+  } catch (err) {
+    console.error("bible study title lookup error", err);
+    return undefined;
+  }
 }
 
 export async function submitBibleStudySignup(
@@ -57,6 +83,28 @@ export async function submitBibleStudySignup(
     return { ok: false, message: "Something went wrong. Please try again in a moment." };
   }
 
+  // Best-effort heads-up — the signup is already saved above regardless of
+  // whether this notification succeeds.
+  const studyName =
+    (await lookupBibleStudyTitle(bible_study_id)) ??
+    fallbackBibleStudies.find((study) => study.id === rawStudyId)?.title;
+
+  try {
+    const notifyResult = await sendBibleStudySignupNotification({
+      full_name,
+      email,
+      phone: phone || undefined,
+      bible_study_id: bible_study_id || undefined,
+      study_name: studyName,
+      message: message || undefined,
+    });
+    if (!notifyResult.ok) {
+      console.error("bible study signup notification error", notifyResult.error);
+    }
+  } catch (err) {
+    console.error("bible study signup notification error", err);
+  }
+
   return { ok: true, message: `Thanks, ${full_name.split(" ")[0]}! We can't wait to have you join us.` };
 }
 
@@ -76,30 +124,49 @@ export async function submitContactForm(
 
   const resolvedTopic = topic || "general";
 
-  const emailResult = await sendContactNotification({
-    full_name,
-    email,
-    phone: phone || undefined,
-    topic: resolvedTopic,
-    message,
-  });
-
-  // Best-effort record-keeping — Supabase isn't wired up yet, so this is a
-  // no-op today, but keeps working the moment it is without code changes.
+  // Save the row first, then email. The visitor sees the same success message
+  // when either step works. Failures are logged, and the error is shown only
+  // when both the save and the email fail.
+  let saved = false;
   if (isSupabaseConfigured) {
-    const supabase = getSupabaseClient();
-    const { error } = await supabase!.from("contact_submissions").insert({
+    try {
+      const supabase = getSupabaseClient();
+      const { error } = await supabase!.from("contact_submissions").insert({
+        full_name,
+        email,
+        phone: phone || null,
+        topic: resolvedTopic,
+        message,
+      });
+      if (error) {
+        console.error("contact_submissions insert error", error);
+      } else {
+        saved = true;
+      }
+    } catch (err) {
+      console.error("contact_submissions insert error", err);
+    }
+  }
+
+  let emailed = false;
+  try {
+    const emailResult = await sendContactNotification({
       full_name,
       email,
-      phone: phone || null,
+      phone: phone || undefined,
       topic: resolvedTopic,
       message,
     });
-    if (error) console.error("contact_submissions insert error", error);
+    if (emailResult.ok) {
+      emailed = true;
+    } else {
+      console.error("contact email send error", emailResult.error);
+    }
+  } catch (err) {
+    console.error("contact email send error", err);
   }
 
-  if (!emailResult.ok) {
-    console.error("contact email send error", emailResult.error);
+  if (!saved && !emailed) {
     return {
       ok: false,
       message:
